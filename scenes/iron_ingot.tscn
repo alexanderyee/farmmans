@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgv3bq2fwcu68"]
+
+[ext_resource type="Texture2D" uid="uid://o1kq2he2xc5k" path="res://assets/objects/iron_ingot.png" id="1_d8lnq"]
+
+[node name="iron_ingot" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_d8lnq")

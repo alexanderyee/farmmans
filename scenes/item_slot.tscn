@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dee5evva1yvns"]
+
+[ext_resource type="Script" path="res://scripts/item_slot.gd" id="1_pbkix"]
+
+[node name="ItemSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_pbkix")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2

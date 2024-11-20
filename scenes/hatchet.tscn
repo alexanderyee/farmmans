@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm3irko5baldg"]
+
+[ext_resource type="Texture2D" uid="uid://mtscr7iqdtat" path="res://assets/objects/tools-n-meterial-items.png" id="1_8e1lw"]
+
+[node name="hatchet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_8e1lw")
+region_enabled = true
+region_rect = Rect2(16, -0.0127974, 16, 16.0128)
