@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://befbhe75nbkbk"]
+[gd_scene load_steps=26 format=4 uid="uid://befbhe75nbkbk"]
 
 [ext_resource type="PackedScene" uid="uid://cjyax66vpcugl" path="res://scenes/Player.tscn" id="1_p5htu"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_4dv68"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://c0ehnoptupjln" path="res://ui/inventory_dialog/inventory_dialog.tscn" id="12_0xrmr"]
 [ext_resource type="PackedScene" uid="uid://c1tvlsdxy5ifl" path="res://ui/crafting_dialog/crafting_dialog.tscn" id="13_m5sev"]
 [ext_resource type="Resource" uid="uid://fk7jrhlprjtm" path="res://data/all_recipes.tres" id="13_tl888"]
+[ext_resource type="PackedScene" uid="uid://cx0fw8jjr52x7" path="res://ui/hotbar/hotbar.tscn" id="16_1pid8"]
+[ext_resource type="Script" path="res://ui/hotbar/hotbar.gd" id="17_gvio8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd3cu"]
 resource_name = "soil"
@@ -352,5 +354,9 @@ offset_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="on_inventory_change" from="Player" to="Player" method="_on_on_inventory_change"]
-[connection signal="on_inventory_change" from="Player" to="UIRoot/InventoryDialog" method="_on_player_on_inventory_change"]
+[node name="Hotbar" parent="UIRoot" instance=ExtResource("16_1pid8")]
+unique_name_in_owner = true
+script = ExtResource("17_gvio8")
+
+[connection signal="inventory_change" from="Player" to="UIRoot/InventoryDialog" method="_on_player_inventory_change"]
+[connection signal="inventory_change" from="Player" to="UIRoot/Hotbar" method="_on_player_inventory_change"]

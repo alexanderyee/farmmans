@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal on_inventory_change
+signal inventory_change
 
 # Properties
 @export var speed := 200
@@ -8,7 +8,7 @@ signal on_inventory_change
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
 
-var inventory:Inventory = Inventory.new() 
+var inventory: Inventory = Inventory.new()
 
 var face_direction := "forward"
 var animation_to_play := "idle_forward"
@@ -53,4 +53,4 @@ func change_direction_marker(new_direction:String):
 
 func on_item_picked_up(item:Item):
 	inventory.add_item(item)
-	emit_signal("on_inventory_change", inventory)
+	emit_signal("inventory_change", inventory)

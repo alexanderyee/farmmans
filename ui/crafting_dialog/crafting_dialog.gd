@@ -6,6 +6,7 @@ extends PanelContainer
 @onready var ingredients_container: GridContainer = %IngredientsContainer
 @onready var results_container: GridContainer = %ResultsContainer
 @onready var craft_button: Button = %CraftButton
+@onready var hotbar: Hotbar = %Hotbar
 
 var _inventory:Inventory
 var _selected_recipe:Recipe
@@ -38,3 +39,4 @@ func _on_craft_button_pressed() -> void:
 	for item in _selected_recipe.results:
 		_inventory.add_item(item)
 	craft_button.disabled = not _inventory.has_all(_selected_recipe.ingredients)
+	hotbar.refresh_hotbar(_inventory)
