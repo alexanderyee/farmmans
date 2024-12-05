@@ -5,11 +5,10 @@ extends PanelContainer
 @onready var item_grid: ItemGrid = %ItemGrid
 
 func _ready():
-	pass
+	refresh()
 
-# for init
-func refresh_hotbar(inventory: Inventory) -> void:
-	item_grid.display(inventory.get_hotbar())
+func refresh() -> void:
+	item_grid.display(Inventory.get_hotbar(), 0)
 
-func _on_player_inventory_change(inventory: Inventory) -> void:
-		item_grid.display(inventory.get_hotbar())
+func _on_player_inventory_change() -> void:
+	refresh()

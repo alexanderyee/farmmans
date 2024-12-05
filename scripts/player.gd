@@ -1,14 +1,12 @@
 extends CharacterBody2D
 
-signal inventory_change
+signal inventory_change # TODO is this still needed?
 
 # Properties
 @export var speed := 200
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
-
-var inventory: Inventory = Inventory.new()
 
 var face_direction := "forward"
 var animation_to_play := "idle_forward"
@@ -52,5 +50,5 @@ func change_direction_marker(new_direction:String):
 		direction.set_global_rotation(3 * PI / 2)
 
 func on_item_picked_up(item:Item):
-	inventory.add_item(item)
-	emit_signal("inventory_change", inventory)
+	Inventory.add_item(item)
+	emit_signal("inventory_change")

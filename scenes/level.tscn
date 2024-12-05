@@ -325,7 +325,7 @@ item = ExtResource("11_yke47")
 script = ExtResource("11_q842f")
 all_recipe_resources = ExtResource("13_tl888")
 
-[node name="InventoryDialog" parent="UIRoot" instance=ExtResource("12_0xrmr")]
+[node name="InventoryDialog" parent="UIRoot" groups=["inventory_ui"] instance=ExtResource("12_0xrmr")]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -354,7 +354,7 @@ offset_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Hotbar" parent="UIRoot" instance=ExtResource("16_1pid8")]
+[node name="Hotbar" parent="UIRoot" groups=["inventory_ui"] instance=ExtResource("16_1pid8")]
 unique_name_in_owner = true
 script = ExtResource("17_gvio8")
 

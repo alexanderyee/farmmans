@@ -27,7 +27,7 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "X"
 
-[node name="GridContainer" parent="VBoxContainer" instance=ExtResource("3_an1tw")]
+[node name="ItemGrid" parent="VBoxContainer" instance=ExtResource("3_an1tw")]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 6

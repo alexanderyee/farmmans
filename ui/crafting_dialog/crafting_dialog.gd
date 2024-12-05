@@ -8,11 +8,9 @@ extends PanelContainer
 @onready var craft_button: Button = %CraftButton
 @onready var hotbar: Hotbar = %Hotbar
 
-var _inventory:Inventory
 var _selected_recipe:Recipe
 
-func open(recipes:Array[Recipe], inventory:Inventory):
-	_inventory = inventory
+func open(recipes:Array[Recipe]):
 	show()
 	
 	recipe_list.clear()
@@ -31,12 +29,12 @@ func _on_recipe_list_item_selected(index: int) -> void:
 	_selected_recipe = recipe_list.get_item_metadata(index)
 	ingredients_container.display(_selected_recipe.ingredients)
 	results_container.display(_selected_recipe.results)
-	craft_button.disabled = not _inventory.has_all(_selected_recipe.ingredients)
+	craft_button.disabled = not Inventory.has_all(_selected_recipe.ingredients)
 
 func _on_craft_button_pressed() -> void:
 	for item in _selected_recipe.ingredients:
-		_inventory.remove_item(item)
+		Inventory.remove_item(item)
 	for item in _selected_recipe.results:
-		_inventory.add_item(item)
-	craft_button.disabled = not _inventory.has_all(_selected_recipe.ingredients)
-	hotbar.refresh_hotbar(_inventory)
+		Inventory.add_item(item)
+	craft_button.disabled = not Inventory.has_all(_selected_recipe.ingredients)
+	hotbar.refresh()
