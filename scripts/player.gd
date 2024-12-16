@@ -3,7 +3,8 @@ extends CharacterBody2D
 signal inventory_change # TODO is this still needed? maybe call refresh instead
 
 # Properties
-@export var speed := 200
+@export var speed := 150
+@export var sprint_speed_mult := 1.3
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
@@ -20,7 +21,8 @@ func _ready():
 func _physics_process(_delta):
 	# handle movement
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = raw_input * speed
+		
+	velocity = raw_input * int(speed * (sprint_speed_mult if Input.is_action_pressed("sprint") else 1.0))
 	
 	if raw_input.length() > 0:
 		if abs(raw_input.x) > abs(raw_input.y): # prioritizing vertical movement
@@ -34,9 +36,10 @@ func _physics_process(_delta):
 		if equipped_item:
 			animation_to_play = equipped_item.animation_name + "_" + face_direction
 			print(animation_to_play)
-	if !is_non_walk_idle_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
-		# if no animation is currently being played, play walk/idle animation
-		animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
+	if !is_non_movement_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
+		# if no animation is currently being played, play run/walk/idle animation
+		var movement_animation = "run" if Input.is_action_pressed("sprint") else "walk"
+		animation_to_play = (movement_animation if velocity.length() > 0.0 else "idle") + "_" + face_direction
 	
 	animated_sprite.play(animation_to_play)
 	
@@ -58,7 +61,6 @@ func _physics_process(_delta):
 			emit_signal("inventory_change")
 		
 
-	
 func change_direction_marker(new_direction:String):
 	if new_direction == "forward":
 		direction.set_global_rotation(0)
@@ -77,12 +79,12 @@ func on_item_picked_up(item:Item):
 	
 	emit_signal("inventory_change")
 
-func is_non_walk_idle_animation_playing(animation_to_play: String):
+func is_non_movement_animation_playing(animation_to_play: String):
 	if animated_sprite.is_playing():
 		var current_animation := animated_sprite.get_animation()
-		if !current_animation.begins_with("walk") and !current_animation.begins_with("idle"):
+		if !current_animation.begins_with("run") and !current_animation.begins_with("walk") and !current_animation.begins_with("idle"):
 			return true
-		if !animation_to_play.begins_with("walk") and !animation_to_play.begins_with("idle"):
+		if !animation_to_play.begins_with("run") and !animation_to_play.begins_with("walk") and !animation_to_play.begins_with("idle"):
 			return true
 	return false
 		

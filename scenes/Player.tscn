@@ -1235,7 +1235,7 @@ size = Vector2(10, 6)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_igk6m")
-animation = &"walk_right"
+animation = &"walk_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
