@@ -11,3 +11,4 @@ scene = ExtResource("2_rgyf5")
 icon = ExtResource("1_ednup")
 price = 2
 animation_name = "watering_can"
+is_equippable = true

@@ -70,7 +70,11 @@ func change_direction_marker(new_direction:String):
 		direction.set_global_rotation(3 * PI / 2)
 
 func on_item_picked_up(item:Item):
-	Inventory.add_item(item)
+	if item.is_equippable:
+		Inventory.add_equippable_item(item)
+	else:
+		Inventory.add_non_equippable_item(item)
+	
 	emit_signal("inventory_change")
 
 func is_non_walk_idle_animation_playing(animation_to_play: String):
