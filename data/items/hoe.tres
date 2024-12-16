@@ -9,3 +9,5 @@ script = ExtResource("1_6xxcc")
 name = "Hoe"
 scene = ExtResource("1_djweq")
 icon = ExtResource("1_j4p7a")
+price = 5
+animation_name = "hoe"

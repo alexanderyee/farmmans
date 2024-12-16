@@ -31,6 +31,9 @@ func swap_items_at_positions(pos1: int, pos2: int):
 func get_contents() -> Array[Item]:
 	return _contents
 	
+func get_item_at_slot(slot_id: int):
+	return _contents[slot_id]
+	
 func get_hotbar() -> Array[Item]:
 	return _contents.slice(0, 6)
 

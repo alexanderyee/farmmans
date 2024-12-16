@@ -10,3 +10,4 @@ name = "Hatchet"
 scene = ExtResource("1_jkvid")
 icon = ExtResource("1_jxqdc")
 price = 5
+animation_name = "hatchet"

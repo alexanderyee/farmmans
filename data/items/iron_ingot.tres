@@ -10,3 +10,4 @@ name = "Iron Ingot"
 scene = ExtResource("2_um84w")
 icon = ExtResource("1_n38hb")
 price = 2
+animation_name = "N/A"

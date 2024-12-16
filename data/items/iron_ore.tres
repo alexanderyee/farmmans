@@ -9,3 +9,5 @@ script = ExtResource("1_8rqae")
 name = "Iron Ore"
 scene = ExtResource("2_0gpxf")
 icon = ExtResource("1_825v5")
+price = 5
+animation_name = "N/A"
