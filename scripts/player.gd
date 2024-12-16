@@ -8,7 +8,7 @@ signal inventory_change # TODO is this still needed? maybe call refresh instead
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
 
-var equipped: Item
+var equipped_slot: int
 var face_direction := "forward"
 var animation_to_play := "idle_forward"
 
@@ -30,14 +30,13 @@ func _physics_process(_delta):
 
 	# check for primary action
 	if Input.is_action_just_pressed("primary"):
-		equipped = Inventory.get_item_at_slot(0)
-		if equipped:
-			animation_to_play = equipped.animation_name + "_" + face_direction
+		var equipped_item = Inventory.get_item_at_slot(equipped_slot)
+		if equipped_item:
+			animation_to_play = equipped_item.animation_name + "_" + face_direction
 			print(animation_to_play)
 	if !is_non_walk_idle_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
 		# if no animation is currently being played, play walk/idle animation
 		animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
-	
 	
 	animated_sprite.play(animation_to_play)
 	
@@ -50,6 +49,14 @@ func _physics_process(_delta):
 			if area.is_in_group("door"):
 				area.toggle_door()
 	
+	# check hotbar item switch 
+	# TODO would it be better practice to let Inventory or Hotbar handle this input listening?
+	for i in range(1,7): 
+		if Input.is_action_just_pressed("hotbar_" + str(i)):
+			equipped_slot = i - 1
+			Inventory.set_equipped_slot(equipped_slot)
+			emit_signal("inventory_change")
+		
 
 	
 func change_direction_marker(new_direction:String):

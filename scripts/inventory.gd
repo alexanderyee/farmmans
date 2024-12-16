@@ -2,6 +2,7 @@ extends Node
 
 const INVENTORY_SIZE := 36
 var _contents:Array[Item] = []
+var equipped_slot = -1
 
 func _ready():
 	pass
@@ -47,3 +48,9 @@ func has_all(items: Array[Item]) -> bool:
 	
 func resize_inventory(size: int):
 	_contents.resize(size)
+
+func get_equipped_slot() -> int:
+	return equipped_slot
+
+func set_equipped_slot(slot_idx: int):
+	equipped_slot = slot_idx
