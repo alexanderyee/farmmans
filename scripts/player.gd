@@ -34,8 +34,10 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("primary"):
 		var equipped_item = Inventory.get_item_at_slot(equipped_slot)
 		if equipped_item:
-			animation_to_play = equipped_item.animation_name + "_" + face_direction
-			print(animation_to_play)
+			# aim towards mouse cursor
+			var mouse_direction = get_relative_mouse_direction()
+			face_direction = mouse_direction
+			animation_to_play = equipped_item.animation_name + "_" + mouse_direction
 	if !is_non_movement_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
 		# if no animation is currently being played, play run/walk/idle animation
 		var movement_animation = "run" if Input.is_action_pressed("sprint") else "walk"
@@ -88,3 +90,8 @@ func is_non_movement_animation_playing(animation_to_play: String):
 			return true
 	return false
 		
+func get_relative_mouse_direction() -> String:
+	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
+	if abs(relative_mouse_direction_2d.x) > abs(relative_mouse_direction_2d.y): # prioritizing vertical pos
+		return "left" if relative_mouse_direction_2d.x < 0 else "right"
+	return "backward" if relative_mouse_direction_2d.y < 0 else "forward"

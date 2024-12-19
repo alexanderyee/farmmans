@@ -787,7 +787,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hoe_backward",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -816,7 +816,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hoe_forward",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -845,7 +845,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hoe_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -874,7 +874,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hoe_right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1235,7 +1235,7 @@ size = Vector2(10, 6)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_igk6m")
-animation = &"walk_forward"
+animation = &"walk_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
