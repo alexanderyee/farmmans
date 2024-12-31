@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1t8hnbhg1kwb"
-path="res://.godot/imported/Wooden_House_Walls_Tilset.png-c437bffd4f151550fc332d175736304b.ctex"
+uid="uid://y6k4gt0t1x5t"
+path="res://.godot/imported/Soil_Ground_Hills_Tiles.png-bebfa51e361004e31cdd00d5b2282043.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Wooden_House_Walls_Tilset.png"
-dest_files=["res://.godot/imported/Wooden_House_Walls_Tilset.png-c437bffd4f151550fc332d175736304b.ctex"]
+source_file="res://assets/tilesets/Soil_Ground_Hills_Tiles.png"
+dest_files=["res://.godot/imported/Soil_Ground_Hills_Tiles.png-bebfa51e361004e31cdd00d5b2282043.ctex"]
 
 [params]
 

@@ -12,3 +12,5 @@ icon = ExtResource("1_j4p7a")
 price = 5
 animation_name = "hoe"
 is_equippable = true
+type = "TOOL"
+action = "TILL"

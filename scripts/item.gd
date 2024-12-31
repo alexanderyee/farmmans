@@ -7,3 +7,5 @@ extends Resource
 @export var price:int = 5
 @export var animation_name:String
 @export var is_equippable:bool
+@export var type:String
+@export var action:String

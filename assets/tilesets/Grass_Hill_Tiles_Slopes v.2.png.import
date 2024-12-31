@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rrlkxfwilrxa"
-path="res://.godot/imported/Grass_Hill_Tiles_Slopes v.2.png-c6bb57a82739cae9f871defca56ce2ef.ctex"
+path="res://.godot/imported/Grass_Hill_Tiles_Slopes v.2.png-8bcf2a8040e79c51adef677022bf28b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Grass_Hill_Tiles_Slopes v.2.png"
-dest_files=["res://.godot/imported/Grass_Hill_Tiles_Slopes v.2.png-c6bb57a82739cae9f871defca56ce2ef.ctex"]
+source_file="res://assets/tilesets/Grass_Hill_Tiles_Slopes v.2.png"
+dest_files=["res://.godot/imported/Grass_Hill_Tiles_Slopes v.2.png-8bcf2a8040e79c51adef677022bf28b8.ctex"]
 
 [params]
 

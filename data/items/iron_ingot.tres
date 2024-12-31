@@ -12,3 +12,5 @@ icon = ExtResource("1_n38hb")
 price = 2
 animation_name = "N/A"
 is_equippable = false
+type = "RESOURCE"
+action = ""

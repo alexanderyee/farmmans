@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm3gq5amyd4rp"
-path="res://.godot/imported/Wooden_House_Roof_Tilset.png-64bbc4cda85b55356b793aeff1c56226.ctex"
+uid="uid://bvd4hst5exnf3"
+path="res://.godot/imported/Darker_Grass_Hills_Tiles_v2.png-5b5b6e7747c41feb2069c445b587d9d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Wooden_House_Roof_Tilset.png"
-dest_files=["res://.godot/imported/Wooden_House_Roof_Tilset.png-64bbc4cda85b55356b793aeff1c56226.ctex"]
+source_file="res://assets/tilesets/Darker_Grass_Hills_Tiles_v2.png"
+dest_files=["res://.godot/imported/Darker_Grass_Hills_Tiles_v2.png-5b5b6e7747c41feb2069c445b587d9d9.ctex"]
 
 [params]
 

@@ -12,3 +12,5 @@ icon = ExtResource("1_ednup")
 price = 2
 animation_name = "watering_can"
 is_equippable = true
+type = "TOOL"
+action = "WATER"

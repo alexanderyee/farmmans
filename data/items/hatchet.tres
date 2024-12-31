@@ -12,3 +12,5 @@ icon = ExtResource("1_jxqdc")
 price = 5
 animation_name = "hatchet"
 is_equippable = true
+type = "TOOL"
+action = "CHOP"

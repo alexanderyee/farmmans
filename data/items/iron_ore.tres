@@ -12,3 +12,4 @@ icon = ExtResource("1_825v5")
 price = 5
 animation_name = "N/A"
 is_equippable = false
+type = "RESOURCE"

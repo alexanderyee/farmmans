@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy1qh3cfkcq3r"
-path="res://.godot/imported/TILE LAYER EXAMPLE.png-171d5056388f6c1735a821e6d6d78c89.ctex"
+uid="uid://i0q2ash382iy"
+path="res://.godot/imported/Darker_Soil_Ground_Hills_Tiles.png-32869a37c1290514b084f871e8e2f964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/TILE LAYER EXAMPLE.png"
-dest_files=["res://.godot/imported/TILE LAYER EXAMPLE.png-171d5056388f6c1735a821e6d6d78c89.ctex"]
+source_file="res://assets/tilesets/Darker_Soil_Ground_Hills_Tiles.png"
+dest_files=["res://.godot/imported/Darker_Soil_Ground_Hills_Tiles.png-32869a37c1290514b084f871e8e2f964.ctex"]
 
 [params]
 
