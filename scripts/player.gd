@@ -85,12 +85,12 @@ func on_item_picked_up(item:Item):
 	
 	emit_signal("inventory_change")
 
-func is_non_movement_animation_playing(animation_to_play: String):
+func is_non_movement_animation_playing(next_animation: String):
 	if animated_sprite.is_playing():
 		var current_animation := animated_sprite.get_animation()
 		if !current_animation.begins_with("run") and !current_animation.begins_with("walk") and !current_animation.begins_with("idle"):
 			return true
-		if !animation_to_play.begins_with("run") and !animation_to_play.begins_with("walk") and !animation_to_play.begins_with("idle"):
+		if !next_animation.begins_with("run") and !next_animation.begins_with("walk") and !next_animation.begins_with("idle"):
 			return true
 	return false
 
@@ -100,9 +100,9 @@ func get_relative_mouse_direction() -> String:
 		return "left" if relative_mouse_direction_2d.x < 0 else "right"
 	return "backward" if relative_mouse_direction_2d.y < 0 else "forward"
 
-func perform_tool_action(tool: Item, direction: String):
+func perform_tool_action(tool: Item, action_direction: String):
 	
-	emit_signal("tool_usage", tool.action, position, direction)
+	emit_signal("tool_usage", tool.action, position, action_direction)
 	# set tile according to item's action
 	return
 	

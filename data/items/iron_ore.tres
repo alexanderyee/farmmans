@@ -13,3 +13,4 @@ price = 5
 animation_name = "N/A"
 is_equippable = false
 type = "RESOURCE"
+action = ""
