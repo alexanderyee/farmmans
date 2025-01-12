@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal inventory_change # TODO is this still needed? maybe call refresh instead
 signal tool_usage
+signal highlight_tile_tool
 
 # Properties
 @export var speed := 150
@@ -31,16 +32,22 @@ func _physics_process(_delta):
 		else:
 			face_direction = "backward" if raw_input.y < 0 else "forward"
 
+	# check for mouse movement (tile highlighting)
+	var mouse_direction := get_relative_mouse_direction()
+	var tool_equipped = false
+	var equipped_item = Inventory.get_item_at_slot(equipped_slot)
+	if equipped_item:
+		if equipped_item.type == "TOOL":
+			tool_equipped = true
+	if tool_equipped:
+		emit_signal("highlight_tile_tool", position, mouse_direction)
 	# check for primary action
 	if Input.is_action_just_pressed("primary"):
-		var equipped_item = Inventory.get_item_at_slot(equipped_slot)
-		if equipped_item: # TODO check if it's actionable
+		if tool_equipped:
 			# aim towards mouse cursor
-			var mouse_direction := get_relative_mouse_direction()
 			face_direction = mouse_direction
 			animation_to_play = equipped_item.animation_name + "_" + mouse_direction
-			if equipped_item.type == "TOOL":
-				perform_tool_action(equipped_item, mouse_direction)
+			perform_tool_action(equipped_item, mouse_direction)
 				
 	if !is_non_movement_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
 		# if no animation is currently being played, play run/walk/idle animation
