@@ -34,6 +34,7 @@ func _physics_process(_delta):
 
 	# check for mouse movement (tile highlighting)
 	var mouse_direction := get_relative_mouse_direction()
+	print(mouse_direction)
 	var tool_equipped = false
 	var equipped_item = Inventory.get_item_at_slot(equipped_slot)
 	if equipped_item:
@@ -103,9 +104,25 @@ func is_non_movement_animation_playing(next_animation: String):
 
 func get_relative_mouse_direction() -> String:
 	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
-	if abs(relative_mouse_direction_2d.x) > abs(relative_mouse_direction_2d.y): # prioritizing vertical pos
-		return "left" if relative_mouse_direction_2d.x < 0 else "right"
-	return "backward" if relative_mouse_direction_2d.y < 0 else "forward"
+	var mouse_angle := relative_mouse_direction_2d.angle()
+	# TODO: any way to simplify 1/8PI or detect diagonals?
+	if mouse_angle > 15/8*PI or mouse_angle <= 1/8*PI:
+		return "right"
+	elif mouse_angle > 1/8*PI and mouse_angle <= 3/8*PI:
+		return "down_right"
+	elif mouse_angle > 3/8*PI and mouse_angle <= 5/8*PI:
+		return "down"
+	elif mouse_angle > 5/8*PI and mouse_angle < 7/8*PI:
+		return "down_left"
+	elif mouse_angle > 7/8*PI and mouse_angle < 9/8*PI:
+		return "left"
+	elif mouse_angle > 9/8*PI and mouse_angle < 11/8*PI:
+		return "up_left"
+	elif mouse_angle > 11/8*PI and mouse_angle < 13/8*PI:
+		return "up"
+	elif mouse_angle > 13/8*PI and mouse_angle < 15/8*PI:
+		return "up_right"
+	return ""
 
 func perform_tool_action(tool: Item, action_direction: String):
 	

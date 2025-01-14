@@ -19,7 +19,6 @@ func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String
 		if atlas_coords == FLAT_GROUND_ATLAS_COORDS or atlas_coords.y >= 5:
 			soil.set_cell(soil_cell, SOIL_ATLAS_ID, FLAT_GROUND_ATLAS_COORDS)
 			
-			
 	pass
 
 
