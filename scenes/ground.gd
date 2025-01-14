@@ -28,12 +28,12 @@ func _on_player_highlight_tile_tool(player_pos:Vector2, direction: String) -> vo
 	
 	# params for shader code
 	var tile_size = Vector2(16, 16)
-	var highlight_color = Vector4(0, 0, 0, .8)
+	var highlight_color = Vector4(1.0, 1.0, 1.0, 1.0)
 	var map_local = soil.map_to_local(soil_cell)
 	soil.material.set_shader_parameter("tile_size", tile_size)
 	soil.material.set_shader_parameter("highlight_pos", Vector2(soil_cell))
 	soil.material.set_shader_parameter("highlight_color", highlight_color)
-	soil.material.set_shader_parameter("highlight_intensity", 1.0)
+	soil.material.set_shader_parameter("highlight_intensity", 0.2)
 	
 
 func get_relative_tile_to_player(player_pos:Vector2, direction: String) -> Vector2i:

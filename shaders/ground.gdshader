@@ -17,6 +17,12 @@ void fragment() {
     if (tile_coord == highlight_pos) {
         vec4 original_color = texture(TEXTURE, UV);
         COLOR = mix(original_color, highlight_color, highlight_intensity);
+		// check if the current fragment is on the border edge of the tile
+		vec2 position_within_tile = mod(world_position, tile_size);
+		if (position_within_tile.x <= 2.0 || position_within_tile.y <= 2.0 || position_within_tile.x >= 14.0 || position_within_tile.y >= 14.0) {
+			COLOR = highlight_color;
+		}
+			
     } else {
         COLOR = texture(TEXTURE, UV);
     }
