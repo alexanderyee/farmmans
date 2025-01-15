@@ -4,6 +4,8 @@ uniform vec2 tile_size;
 uniform vec2 highlight_pos;
 uniform vec4 highlight_color;
 uniform float highlight_intensity;
+uniform bool tool_equipped;
+
 varying vec2 world_position;
 
 void vertex() {
@@ -14,7 +16,7 @@ void vertex() {
 void fragment() {
     // Check if the current fragment belongs to the highlighted tile
     vec2 tile_coord = floor(world_position / tile_size);
-    if (tile_coord == highlight_pos) {
+    if (tile_coord == highlight_pos && tool_equipped) {
         vec4 original_color = texture(TEXTURE, UV);
         COLOR = mix(original_color, highlight_color, highlight_intensity);
 		// check if the current fragment is on the border edge of the tile

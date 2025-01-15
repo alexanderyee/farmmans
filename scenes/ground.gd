@@ -22,7 +22,7 @@ func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String
 	pass
 
 
-func _on_player_highlight_tile_tool(player_pos:Vector2, direction: String) -> void:
+func _on_player_highlight_tile_tool(player_pos:Vector2, direction: String, tool_equipped: bool) -> void:
 	var soil_cell := get_relative_tile_to_player(player_pos, direction)
 	
 	# params for shader code
@@ -33,17 +33,31 @@ func _on_player_highlight_tile_tool(player_pos:Vector2, direction: String) -> vo
 	soil.material.set_shader_parameter("highlight_pos", Vector2(soil_cell))
 	soil.material.set_shader_parameter("highlight_color", highlight_color)
 	soil.material.set_shader_parameter("highlight_intensity", 0.2)
-	
+	soil.material.set_shader_parameter("tool_equipped", tool_equipped)
+
 
 func get_relative_tile_to_player(player_pos:Vector2, direction: String) -> Vector2i:
 	var soil_cell : Vector2i = (soil.local_to_map(player_pos))
 	match direction:
-		"forward":
-			soil_cell.y += 1
-		"down":
-			soil_cell.y -= 1
+		# TODO maybe just split into ternarys left/right up/down?
 		"right":
 			soil_cell.x += 1
+		"down_right":
+			soil_cell.x += 1
+			soil_cell.y += 1
+		"down":
+			soil_cell.y += 1
+		"down_left":
+			soil_cell.x -= 1
+			soil_cell.y += 1
 		"left":
 			soil_cell.x -= 1
+		"up_left":
+			soil_cell.x -= 1
+			soil_cell.y -= 1
+		"up":
+			soil_cell.y -= 1
+		"up_right":
+			soil_cell.y -= 1
+			soil_cell.x += 1
 	return soil_cell

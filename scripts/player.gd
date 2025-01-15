@@ -12,16 +12,16 @@ signal highlight_tile_tool
 @onready var direction: Marker2D = $Direction
 
 var equipped_slot: int
-var face_direction := "forward"
-var animation_to_play := "idle_forward"
+var face_direction := "down"
+var animation_to_play := "idle_down"
 var direction_regex: RegEx
 
 # Start front idle animation on load
 func _ready():
 	animated_sprite.stop()
-	animated_sprite.play("idle_forward")
+	animated_sprite.play("idle_down")
 	direction_regex = RegEx.new()
-	direction_regex.compile("^[^\\_]*\\_(.*)|^(.*)$")
+	direction_regex.compile("^[^\\_]*\\_?(.*)$")
 
 func _physics_process(_delta):
 	# handle movement
@@ -33,7 +33,7 @@ func _physics_process(_delta):
 		if abs(raw_input.x) > abs(raw_input.y): # prioritizing vertical movement
 			face_direction = "left" if raw_input.x < 0 else "right"
 		else:
-			face_direction = "backward" if raw_input.y < 0 else "forward"
+			face_direction = "up" if raw_input.y < 0 else "down"
 
 	# check for mouse movement (tile highlighting)
 	var mouse_direction := get_relative_mouse_direction()
@@ -42,15 +42,15 @@ func _physics_process(_delta):
 	if equipped_item:
 		if equipped_item.type == "TOOL":
 			tool_equipped = true
-	if tool_equipped:
-		emit_signal("highlight_tile_tool", position, mouse_direction)
+	emit_signal("highlight_tile_tool", position, mouse_direction, tool_equipped)
+		# reset highlight
 	# check for primary action
 	if Input.is_action_just_pressed("primary"):
 		if tool_equipped:
 			# aim towards mouse cursor
 			face_direction = diagonal_to_cardinal(mouse_direction)
 			print(face_direction)
-			animation_to_play = equipped_item.animation_name + "_" + mouse_direction
+			animation_to_play = equipped_item.animation_name + "_" + face_direction
 			perform_tool_action(equipped_item, mouse_direction)
 				
 	if !is_non_movement_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
@@ -79,11 +79,11 @@ func _physics_process(_delta):
 		
 
 func change_direction_marker(new_direction:String):
-	if new_direction == "forward":
+	if new_direction == "down":
 		direction.set_global_rotation(0)
 	elif new_direction == "left":
 		direction.set_global_rotation(PI / 2)
-	elif new_direction == "backward":
+	elif new_direction == "up":
 		direction.set_global_rotation(PI)
 	else:
 		direction.set_global_rotation(3 * PI / 2)
@@ -134,5 +134,7 @@ func perform_tool_action(tool: Item, action_direction: String):
 	return
 	
 func diagonal_to_cardinal(cardinal: String):
-	var jhi = direction_regex.search(cardinal)
-	return direction_regex.search(cardinal).get_string(1)
+	var matched_groups = direction_regex.search(cardinal).get_strings()
+	if matched_groups[1].length() == 0:
+		return matched_groups[0]
+	return matched_groups[1]

@@ -31,6 +31,7 @@ shader_parameter/tile_size = null
 shader_parameter/highlight_pos = null
 shader_parameter/highlight_color = null
 shader_parameter/highlight_intensity = null
+shader_parameter/tool_equipped = null
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd3cu"]
 resource_name = "soil"
