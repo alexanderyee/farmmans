@@ -14,11 +14,14 @@ signal highlight_tile_tool
 var equipped_slot: int
 var face_direction := "forward"
 var animation_to_play := "idle_forward"
+var direction_regex: RegEx
 
 # Start front idle animation on load
 func _ready():
 	animated_sprite.stop()
 	animated_sprite.play("idle_forward")
+	direction_regex = RegEx.new()
+	direction_regex.compile("^[^\\_]*\\_(.*)|^(.*)$")
 
 func _physics_process(_delta):
 	# handle movement
@@ -34,7 +37,6 @@ func _physics_process(_delta):
 
 	# check for mouse movement (tile highlighting)
 	var mouse_direction := get_relative_mouse_direction()
-	print(mouse_direction)
 	var tool_equipped = false
 	var equipped_item = Inventory.get_item_at_slot(equipped_slot)
 	if equipped_item:
@@ -46,7 +48,8 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("primary"):
 		if tool_equipped:
 			# aim towards mouse cursor
-			face_direction = mouse_direction
+			face_direction = diagonal_to_cardinal(mouse_direction)
+			print(face_direction)
 			animation_to_play = equipped_item.animation_name + "_" + mouse_direction
 			perform_tool_action(equipped_item, mouse_direction)
 				
@@ -106,21 +109,21 @@ func get_relative_mouse_direction() -> String:
 	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
 	var mouse_angle := relative_mouse_direction_2d.angle()
 	# TODO: any way to simplify 1/8PI or detect diagonals?
-	if mouse_angle > 15/8*PI or mouse_angle <= 1/8*PI:
+	if mouse_angle > -1.0/8*PI and mouse_angle <= 1.0/8*PI:
 		return "right"
-	elif mouse_angle > 1/8*PI and mouse_angle <= 3/8*PI:
+	elif mouse_angle > 1.0/8*PI and mouse_angle <= 3.0/8*PI:
 		return "down_right"
-	elif mouse_angle > 3/8*PI and mouse_angle <= 5/8*PI:
+	elif mouse_angle > 3.0/8*PI and mouse_angle <= 5.0/8*PI:
 		return "down"
-	elif mouse_angle > 5/8*PI and mouse_angle < 7/8*PI:
+	elif mouse_angle > 5.0/8*PI and mouse_angle <= 7.0/8*PI:
 		return "down_left"
-	elif mouse_angle > 7/8*PI and mouse_angle < 9/8*PI:
+	elif mouse_angle > 7.0/8*PI or mouse_angle <= -7.0/8*PI:
 		return "left"
-	elif mouse_angle > 9/8*PI and mouse_angle < 11/8*PI:
+	elif mouse_angle > -7.0/8*PI and mouse_angle <= -5.0/8*PI:
 		return "up_left"
-	elif mouse_angle > 11/8*PI and mouse_angle < 13/8*PI:
+	elif mouse_angle > -5.0/8*PI and mouse_angle <= -3.0/8*PI:
 		return "up"
-	elif mouse_angle > 13/8*PI and mouse_angle < 15/8*PI:
+	elif mouse_angle > -3.0/8*PI and mouse_angle <= -1.0/8*PI:
 		return "up_right"
 	return ""
 
@@ -130,3 +133,6 @@ func perform_tool_action(tool: Item, action_direction: String):
 	# set tile according to item's action
 	return
 	
+func diagonal_to_cardinal(cardinal: String):
+	var jhi = direction_regex.search(cardinal)
+	return direction_regex.search(cardinal).get_string(1)
