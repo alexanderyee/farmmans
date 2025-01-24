@@ -26,9 +26,7 @@ func _ready():
 func _physics_process(_delta):
 	# handle movement
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		
 	velocity = raw_input * int(speed * (sprint_speed_mult if Input.is_action_pressed("sprint") else 1.0))
-	
 	if raw_input.length() > 0:
 		if abs(raw_input.x) > abs(raw_input.y): # prioritizing vertical movement
 			face_direction = "left" if raw_input.x < 0 else "right"
@@ -38,23 +36,30 @@ func _physics_process(_delta):
 	# check for mouse movement (tile highlighting)
 	var mouse_direction := get_relative_mouse_direction()
 	var tool_equipped = false
+	var weapon_equipped = false
 	var equipped_item = Inventory.get_item_at_slot(equipped_slot)
 	if equipped_item:
 		if equipped_item.type == "TOOL":
 			tool_equipped = true
+		elif equipped_item.type == "WEAPON":
+			weapon_equipped = true
 	emit_signal("highlight_tile_tool", position, mouse_direction, tool_equipped)
-		# reset highlight
-	# check for primary action
+	
+	# check for primary action (left-click)
 	if Input.is_action_just_pressed("primary"):
 		if tool_equipped:
 			# aim towards mouse cursor
 			face_direction = diagonal_to_cardinal(mouse_direction)
-			print(face_direction)
 			animation_to_play = equipped_item.animation_name + "_" + face_direction
 			perform_tool_action(equipped_item, mouse_direction)
-				
+		if weapon_equipped:
+			face_direction = diagonal_to_cardinal(mouse_direction)
+			animation_to_play = equipped_item.animation_name + "_" + face_direction
+			perform_weapon_action(equipped_item, face_direction)
+			
+		
+	# if no animation is currently being played, play run/walk/idle animation
 	if !is_non_movement_animation_playing(animation_to_play) or animation_to_play.begins_with("N/A"):
-		# if no animation is currently being played, play run/walk/idle animation
 		var movement_animation = "run" if Input.is_action_pressed("sprint") else "walk"
 		animation_to_play = (movement_animation if velocity.length() > 0.0 else "idle") + "_" + face_direction
 	
@@ -133,6 +138,10 @@ func perform_tool_action(tool: Item, action_direction: String):
 	# set tile according to item's action
 	return
 	
+func perform_weapon_action(weapon: Item, action_direction: String):
+	print("WIP" + weapon.name + " slash " + action_direction)
+	pass
+
 func diagonal_to_cardinal(cardinal: String):
 	var matched_groups = direction_regex.search(cardinal).get_strings()
 	if matched_groups[1].length() == 0:

@@ -10,7 +10,7 @@ void fragment() {
 	COLOR = texture(TEXTURE, UV);
 	//COLOR.a = sin(TIME*5.0) + 1.0;
 	//COLOR.r = sin(TIME*5.0);
-	
+
 }
 
 //void light() {

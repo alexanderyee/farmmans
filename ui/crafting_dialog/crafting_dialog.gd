@@ -24,7 +24,6 @@ func open(recipes:Array[Recipe]):
 func _on_close_button_pressed() -> void:
 	hide()
 
-
 func _on_recipe_list_item_selected(index: int) -> void:
 	_selected_recipe = recipe_list.get_item_metadata(index)
 	ingredients_container.display(_selected_recipe.ingredients)

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c0e7m7siogb82"]
 
-[ext_resource type="PackedScene" uid="uid://bm3irko5baldg" path="res://scenes/hatchet.tscn" id="1_jkvid"]
 [ext_resource type="Texture2D" uid="uid://dw4f43nisvufn" path="res://assets/objects/hatchet.png" id="1_jxqdc"]
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_lbu51"]
+[ext_resource type="PackedScene" uid="uid://bm3irko5baldg" path="res://scenes/items/hatchet.tscn" id="2_i0b34"]
 
 [resource]
 script = ExtResource("1_lbu51")
 name = "Hatchet"
-scene = ExtResource("1_jkvid")
+scene = ExtResource("2_i0b34")
 icon = ExtResource("1_jxqdc")
 price = 5
 animation_name = "hatchet"

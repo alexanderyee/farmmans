@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_8rqae"]
 [ext_resource type="Texture2D" uid="uid://btncht2fkq4rs" path="res://assets/objects/iron_ore.png" id="1_825v5"]
-[ext_resource type="PackedScene" uid="uid://csk8kxnx6xbpd" path="res://scenes/iron_ore.tscn" id="2_0gpxf"]
+[ext_resource type="PackedScene" uid="uid://csk8kxnx6xbpd" path="res://scenes/items/iron_ore.tscn" id="2_ya1g6"]
 
 [resource]
 script = ExtResource("1_8rqae")
 name = "Iron Ore"
-scene = ExtResource("2_0gpxf")
+scene = ExtResource("2_ya1g6")
 icon = ExtResource("1_825v5")
 price = 5
 animation_name = "N/A"

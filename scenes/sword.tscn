@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbs48se74slh5"]
+
+[ext_resource type="Texture2D" uid="uid://qhv6ynq5s2ls" path="res://assets/objects/sword_icon.png" id="1_tr8r1"]
+
+[node name="hatchet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_tr8r1")
+centered = false
+region_rect = Rect2(16, -0.0127974, 16, 16.0128)

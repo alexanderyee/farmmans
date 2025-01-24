@@ -24,7 +24,7 @@ void fragment() {
 		if (position_within_tile.x <= 2.0 || position_within_tile.y <= 2.0 || position_within_tile.x >= 14.0 || position_within_tile.y >= 14.0) {
 			COLOR = highlight_color;
 		}
-			
+
     } else {
         COLOR = texture(TEXTURE, UV);
     }

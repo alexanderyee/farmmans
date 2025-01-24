@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5slypia6ei0h"]
 
-[ext_resource type="Texture2D" uid="uid://mtscr7iqdtat" path="res://assets/objects/tools-n-meterial-items.png" id="1_mibyw"]
+[ext_resource type="Texture2D" uid="uid://mtscr7iqdtat" path="res://assets/objects/tools-n-meterial-items.png" id="1_b0n2x"]
 
 [node name="hoe" type="Sprite2D"]
 texture_filter = 1
-texture = ExtResource("1_mibyw")
+texture = ExtResource("1_b0n2x")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
