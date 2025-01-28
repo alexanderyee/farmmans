@@ -1,10 +1,11 @@
-[gd_scene load_steps=201 format=3 uid="uid://cjyax66vpcugl"]
+[gd_scene load_steps=202 format=3 uid="uid://cjyax66vpcugl"]
 
 [ext_resource type="Texture2D" uid="uid://c4og8lal65mpc" path="res://assets/Premium Charakter Spritesheet.png" id="1_id812"]
 [ext_resource type="Texture2D" uid="uid://mr1pqbglwdgy" path="res://assets/character_animations/sword-down.png" id="2_mvp0l"]
 [ext_resource type="Texture2D" uid="uid://d2giefpqv5po0" path="res://assets/character_animations/sword-right.png" id="3_3bs36"]
 [ext_resource type="Texture2D" uid="uid://dxjxyos7i8ep5" path="res://assets/character_animations/sword-left.png" id="3_f1rt6"]
 [ext_resource type="Texture2D" uid="uid://ccnaebtab0x3n" path="res://assets/character_animations/sword-up.png" id="5_sr8we"]
+[ext_resource type="Script" path="res://scenes/hitbox.gd" id="6_bsw43"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3mtu"]
 atlas = ExtResource("1_id812")
@@ -1479,6 +1480,9 @@ size = Vector2(10, 6)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7o8e0"]
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -1498,3 +1502,8 @@ scale = Vector2(0.8, 0.8)
 position = Vector2(0, 13)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_7o8e0")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("6_bsw43")
