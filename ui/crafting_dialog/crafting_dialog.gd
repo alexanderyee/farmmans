@@ -6,7 +6,7 @@ extends PanelContainer
 @onready var ingredients_container: GridContainer = %IngredientsContainer
 @onready var results_container: GridContainer = %ResultsContainer
 @onready var craft_button: Button = %CraftButton
-@onready var hotbar: Hotbar = %Hotbar
+@onready var hotbar: Hotbar = $"../Hotbar"
 
 var _selected_recipe:Recipe
 

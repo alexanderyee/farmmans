@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_area_entered(hitbox: HitBox) -> void:
+func _on_area_entered(hitbox: Area2D) -> void:
 	if hitbox == null:
 		return 
 	

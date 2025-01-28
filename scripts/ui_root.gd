@@ -2,9 +2,9 @@ extends CanvasLayer
 
 @export var all_recipe_resources: ResourceGroup
 
-@onready var inventory_dialog: InventoryDialog = %InventoryDialog
-@onready var crafting_dialog: CraftingDialog = %CraftingDialog
-@onready var hotbar: Hotbar = %Hotbar
+@onready var inventory_dialog: InventoryDialog = $InventoryDialog
+@onready var crafting_dialog: CraftingDialog = $CraftingDialog
+@onready var hotbar: Hotbar = $Hotbar
 
 var _all_recipes:Array[Recipe] = []
 
