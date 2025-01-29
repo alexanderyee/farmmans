@@ -55,9 +55,14 @@ func _physics_process(_delta):
 		if raw_input == Vector2.ZERO:
 			anim_tree.get("parameters/playback").travel("Idle")
 		else:
-			anim_tree.get("parameters/playback").travel("Walk")
+			if Input.is_action_pressed("sprint"):
+				# TODO could probably utilize the BlendSpace2D here but want to keep things simple atm
+				anim_tree.get("parameters/playback").travel("Run")
+			else:
+				anim_tree.get("parameters/playback").travel("Walk")
 			anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", raw_input)
 			anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", raw_input)
+			anim_tree.set("parameters/Run/BlendSpace2D/blend_position", raw_input)
 		
 		if raw_input.length() > 0:
 			if abs(raw_input.x) > abs(raw_input.y): # prioritizing vertical movement
@@ -130,6 +135,7 @@ func perform_tool_action(tool: Item, action_direction: String):
 	anim_tree.set("parameters/Attack/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Run/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Hoe/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Hatchet/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 
@@ -144,6 +150,7 @@ func perform_weapon_action(weapon: Item, action_direction: String):
 	anim_tree.set("parameters/Attack/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Run/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Hoe/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Hatchet/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 

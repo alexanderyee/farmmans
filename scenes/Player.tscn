@@ -1,4 +1,4 @@
-[gd_scene load_steps=274 format=3 uid="uid://cjyax66vpcugl"]
+[gd_scene load_steps=286 format=3 uid="uid://cjyax66vpcugl"]
 
 [ext_resource type="Texture2D" uid="uid://c4og8lal65mpc" path="res://assets/Premium Charakter Spritesheet.png" id="1_id812"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uwic5"]
@@ -33,6 +33,238 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qbtyl"]
+resource_name = "hatchet_down"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hatchet_down"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_s58tm"]
+resource_name = "hatchet_left"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hatchet_left"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_3mjdv"]
+resource_name = "hatchet_right"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hatchet_right"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_pvltn"]
+resource_name = "hatchet_up"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hatchet_up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_ekmdh"]
+resource_name = "hoe_down"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hoe_down"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_xlhm1"]
+resource_name = "hoe_left"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hoe_left"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_qwf3e"]
+resource_name = "hoe_right"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hoe_right"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_7cjtq"]
+resource_name = "hoe_up"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hoe_up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_jkdab"]
@@ -380,10 +612,10 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_ekmdh"]
-resource_name = "hoe_down"
+[sub_resource type="Animation" id="Animation_ciptt"]
+resource_name = "run_down"
 length = 0.8
-step = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -394,7 +626,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"hoe_down"]
+"values": [&"run_down"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -409,10 +641,10 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_xlhm1"]
-resource_name = "hoe_left"
+[sub_resource type="Animation" id="Animation_uw6l7"]
+resource_name = "run_left"
 length = 0.8
-step = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -423,7 +655,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"hoe_left"]
+"values": [&"run_left"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -438,10 +670,10 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_qwf3e"]
-resource_name = "hoe_right"
+[sub_resource type="Animation" id="Animation_w4tts"]
+resource_name = "run_right"
 length = 0.8
-step = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -452,7 +684,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"hoe_right"]
+"values": [&"run_right"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -467,10 +699,10 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_7cjtq"]
-resource_name = "hoe_up"
+[sub_resource type="Animation" id="Animation_gfqog"]
+resource_name = "run_up"
 length = 0.8
-step = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -481,123 +713,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"hoe_up"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_qbtyl"]
-resource_name = "hatchet_down"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hatchet_down"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_s58tm"]
-resource_name = "hatchet_left"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hatchet_left"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_pvltn"]
-resource_name = "hatchet_up"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hatchet_up"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_3mjdv"]
-resource_name = "hatchet_right"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hatchet_right"]
+"values": [&"run_up"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -627,6 +743,10 @@ _data = {
 "idle_left": SubResource("Animation_spsos"),
 "idle_right": SubResource("Animation_esp1i"),
 "idle_up": SubResource("Animation_y65w3"),
+"run_down": SubResource("Animation_ciptt"),
+"run_left": SubResource("Animation_uw6l7"),
+"run_right": SubResource("Animation_w4tts"),
+"run_up": SubResource("Animation_gfqog"),
 "sword_down": SubResource("Animation_njs1m"),
 "sword_left": SubResource("Animation_m652x"),
 "sword_right": SubResource("Animation_auuno"),
@@ -2240,6 +2360,35 @@ nodes/TimeScale/position = Vector2(640, 160)
 nodes/output/position = Vector2(920, 180)
 node_connections = [&"TimeScale", 0, &"BlendSpace2D", &"output", 0, &"TimeScale"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8boc"]
+animation = &"run_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g6wpq"]
+animation = &"run_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kn3ox"]
+animation = &"run_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_051t5"]
+animation = &"run_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_cvlqo"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x8boc")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_g6wpq")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_kn3ox")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_051t5")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cmp1k"]
+graph_offset = Vector2(-484, -9)
+nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_cvlqo")
+nodes/BlendSpace2D/position = Vector2(20, 140)
+node_connections = [&"output", 0, &"BlendSpace2D"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1e17"]
 animation = &"walk_left"
 
@@ -2305,6 +2454,10 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sediu"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x758m"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j4oco"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n67ij"]
 states/Attack/node = SubResource("AnimationNodeBlendTree_adoyj")
 states/Attack/position = Vector2(902, 37)
@@ -2317,11 +2470,13 @@ states/Hoe/node = SubResource("AnimationNodeBlendTree_e25i3")
 states/Hoe/position = Vector2(902, 204)
 states/Idle/node = SubResource("AnimationNodeBlendTree_0ms6t")
 states/Idle/position = Vector2(318, 37)
+states/Run/node = SubResource("AnimationNodeBlendTree_cmp1k")
+states/Run/position = Vector2(318, 457)
 states/Start/position = Vector2(130, 113)
 states/Walk/node = SubResource("AnimationNodeBlendTree_gpeoh")
 states/Walk/position = Vector2(335, 318)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gbncp"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0h1th"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ouj0k"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_32ohd"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ux77y"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_8olce"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_1gcye"), "Hoe", "Idle", SubResource("AnimationNodeStateMachineTransition_bwktr"), "Idle", "Hoe", SubResource("AnimationNodeStateMachineTransition_wj7og"), "Walk", "Hoe", SubResource("AnimationNodeStateMachineTransition_u7phr"), "Hoe", "Walk", SubResource("AnimationNodeStateMachineTransition_hrrmg"), "Hatchet", "Idle", SubResource("AnimationNodeStateMachineTransition_jo5sh"), "Hatchet", "Walk", SubResource("AnimationNodeStateMachineTransition_vlkkc"), "Walk", "Hatchet", SubResource("AnimationNodeStateMachineTransition_gae1m"), "Idle", "Hatchet", SubResource("AnimationNodeStateMachineTransition_sediu")]
-graph_offset = Vector2(-247, 159)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gbncp"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0h1th"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ouj0k"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_32ohd"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ux77y"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_8olce"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_1gcye"), "Hoe", "Idle", SubResource("AnimationNodeStateMachineTransition_bwktr"), "Idle", "Hoe", SubResource("AnimationNodeStateMachineTransition_wj7og"), "Walk", "Hoe", SubResource("AnimationNodeStateMachineTransition_u7phr"), "Hoe", "Walk", SubResource("AnimationNodeStateMachineTransition_hrrmg"), "Hatchet", "Idle", SubResource("AnimationNodeStateMachineTransition_jo5sh"), "Hatchet", "Walk", SubResource("AnimationNodeStateMachineTransition_vlkkc"), "Walk", "Hatchet", SubResource("AnimationNodeStateMachineTransition_gae1m"), "Idle", "Hatchet", SubResource("AnimationNodeStateMachineTransition_sediu"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_x758m"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_j4oco")]
+graph_offset = Vector2(-569, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjlbj"]
 size = Vector2(10, 6)
@@ -2352,6 +2507,7 @@ parameters/Hatchet/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/Hoe/BlendSpace2D/blend_position = Vector2(0.33646, -0.62037)
 parameters/Idle/BlendSpace2D/blend_position = Vector2(0.0195583, 0.304545)
 parameters/Idle/TimeScale/scale = 1.0
+parameters/Run/BlendSpace2D/blend_position = Vector2(0.487697, -0.115044)
 parameters/Walk/BlendSpace2D/blend_position = Vector2(0.0940063, 0.395455)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
