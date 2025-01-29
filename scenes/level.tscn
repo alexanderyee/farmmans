@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c1tvlsdxy5ifl" path="res://ui/crafting_dialog/crafting_dialog.tscn" id="13_m5sev"]
 [ext_resource type="Resource" uid="uid://fk7jrhlprjtm" path="res://data/all_recipes.tres" id="13_tl888"]
 [ext_resource type="PackedScene" uid="uid://cx0fw8jjr52x7" path="res://ui/hotbar/hotbar.tscn" id="16_1pid8"]
-[ext_resource type="Resource" uid="uid://12ecs8p1uhu8" path="res://data/items/sword.tres" id="16_kart4"]
+[ext_resource type="Resource" uid="uid://h4hogihufbo7" path="res://data/items/sword.tres" id="16_kart4"]
 [ext_resource type="PackedScene" uid="uid://o5vongcsfxq" path="res://scenes/mobs/enemy.tscn" id="23_ljspo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yrcx"]

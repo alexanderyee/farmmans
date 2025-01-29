@@ -123,7 +123,17 @@ func get_relative_mouse_direction() -> String:
 	return ""
 
 func perform_tool_action(tool: Item, action_direction: String):
+	attacking = true
 	emit_signal("tool_usage", tool.action, position, action_direction)
+	# TODO this is a one liner but nonetheless replicated code
+	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
+	anim_tree.set("parameters/Attack/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Hoe/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Hatchet/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+
+	anim_tree.get("parameters/playback").travel(tool.animation_name)
 	# set tile according to item's action
 	return
 	
@@ -134,6 +144,9 @@ func perform_weapon_action(weapon: Item, action_direction: String):
 	anim_tree.set("parameters/Attack/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", relative_mouse_direction_2d)
 	anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Hoe/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	anim_tree.set("parameters/Hatchet/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+
 	anim_tree.get("parameters/playback").travel("Attack")
 
 func diagonal_to_cardinal(cardinal: String):
@@ -143,5 +156,5 @@ func diagonal_to_cardinal(cardinal: String):
 	return matched_groups[1]
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	if "sword" in anim_name:
+	if "sword" in anim_name or "hoe" in anim_name or "hatchet" in anim_name:
 		attacking = false
