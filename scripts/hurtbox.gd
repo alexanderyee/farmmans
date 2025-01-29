@@ -2,8 +2,8 @@ class_name HurtBox
 extends Area2D
 
 func _init() -> void:
-	collision_layer = 0
-	collision_mask = 5
+	collision_layer = 16
+	collision_mask = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

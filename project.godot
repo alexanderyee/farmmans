@@ -19,6 +19,10 @@ resources_spreadsheet_view/dupe_arrays=true
 resources_spreadsheet_view/context_menu_on_leftclick=false
 resources_spreadsheet_view/fold_docks=false
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+
 [application]
 
 config/name="farm"
@@ -38,6 +42,10 @@ window/size/viewport_height=720
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[global_group]
+
+enemies=""
 
 [godot_resource_groups]
 

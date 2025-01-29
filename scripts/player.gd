@@ -167,3 +167,11 @@ func set_anim_tree_blend_position(blend_position: Vector2, include_action_anims:
 	for movement_anim_name in movement_anim_names:
 			anim_tree.set("parameters/" + movement_anim_name + "/BlendSpace2D/blend_position", blend_position)
 	
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

@@ -4,8 +4,7 @@ extends Area2D
 @export var damage := 10
 
 func _init() -> void:
-	collision_layer = 5
-	collision_mask = 0
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,4 +17,9 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.has_method("take_damage"):
 		area.take_damage(damage)
+	pass # Replace with function body.
+
+
+
+func _on_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.

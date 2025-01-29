@@ -534,9 +534,10 @@ animations = [{
 radius = 76.0066
 
 [node name="slime" type="CharacterBody2D"]
+collision_layer = 17
 script = ExtResource("1_jo2sw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_h2ihh")
 
@@ -553,11 +554,14 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_02jtj")
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("3_haejm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_h2ihh")
+debug_color = Color(0.757594, 0.601089, 1.92523e-07, 0.42)
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
