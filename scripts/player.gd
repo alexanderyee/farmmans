@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+# Constants
+const action_anim_names := ["Hoe", "Hatchet", "Sword"] # TODO map these to resourcetable
+const movement_anim_names := ["Idle", "Run", "Walk"]
+
+# Signals
 signal inventory_change # TODO is this still needed? maybe call refresh instead
 signal tool_usage
 signal highlight_tile_tool
@@ -7,6 +12,7 @@ signal highlight_tile_tool
 # Properties
 @export var speed := 150
 @export var sprint_speed_mult := 1.3
+
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
 @onready var anim_tree: AnimationTree = $AnimationTree
@@ -14,7 +20,7 @@ signal highlight_tile_tool
 var equipped_slot: int
 var face_direction := "down"
 var direction_regex: RegEx
-var attacking = false
+var in_action := false
 
 # Start front idle animation on load
 func _ready():
@@ -22,8 +28,8 @@ func _ready():
 	direction_regex.compile("^[^\\_]*\\_?(.*)$")
 
 func _physics_process(_delta):
-	var tool_equipped = false
-	var weapon_equipped = false
+	var tool_equipped := false
+	var weapon_equipped := false
 	var equipped_item = Inventory.get_item_at_slot(equipped_slot)
 	var mouse_direction := get_relative_mouse_direction()
 	if equipped_item:
@@ -36,7 +42,7 @@ func _physics_process(_delta):
 	emit_signal("highlight_tile_tool", position, mouse_direction, tool_equipped)
 	
 	# check for primary action (left-click)
-	if Input.is_action_just_pressed("primary"):
+	if Input.is_action_just_pressed("primary") and !in_action:
 		if tool_equipped:
 			# aim towards mouse cursor
 			face_direction = diagonal_to_cardinal(mouse_direction)
@@ -49,8 +55,8 @@ func _physics_process(_delta):
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = raw_input * int(speed * (sprint_speed_mult if Input.is_action_pressed("sprint") else 1.0))
 	
-	if attacking:
-		pass
+	if in_action:
+		velocity = Vector2.ZERO
 	else:
 		if raw_input == Vector2.ZERO:
 			anim_tree.get("parameters/playback").travel("Idle")
@@ -60,9 +66,7 @@ func _physics_process(_delta):
 				anim_tree.get("parameters/playback").travel("Run")
 			else:
 				anim_tree.get("parameters/playback").travel("Walk")
-			anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", raw_input)
-			anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", raw_input)
-			anim_tree.set("parameters/Run/BlendSpace2D/blend_position", raw_input)
+			set_anim_tree_blend_position(raw_input, false)
 		
 		if raw_input.length() > 0:
 			if abs(raw_input.x) > abs(raw_input.y): # prioritizing vertical movement
@@ -128,33 +132,23 @@ func get_relative_mouse_direction() -> String:
 	return ""
 
 func perform_tool_action(tool: Item, action_direction: String):
-	attacking = true
+	in_action = true
 	emit_signal("tool_usage", tool.action, position, action_direction)
 	# TODO this is a one liner but nonetheless replicated code
 	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
-	anim_tree.set("parameters/Attack/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Run/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Hoe/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Hatchet/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
 
 	anim_tree.get("parameters/playback").travel(tool.animation_name)
 	# set tile according to item's action
 	return
 	
 func perform_weapon_action(weapon: Item, action_direction: String):
-	attacking = true
+	in_action = true
 	# TODO this is a one liner but nonetheless replicated code
 	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
-	anim_tree.set("parameters/Attack/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Run/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Hoe/BlendSpace2D/blend_position", relative_mouse_direction_2d)
-	anim_tree.set("parameters/Hatchet/BlendSpace2D/blend_position", relative_mouse_direction_2d)
+	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
 
-	anim_tree.get("parameters/playback").travel("Attack")
+	anim_tree.get("parameters/playback").travel("Sword")
 
 func diagonal_to_cardinal(cardinal: String):
 	var matched_groups = direction_regex.search(cardinal).get_strings()
@@ -164,4 +158,12 @@ func diagonal_to_cardinal(cardinal: String):
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if "sword" in anim_name or "hoe" in anim_name or "hatchet" in anim_name:
-		attacking = false
+		in_action = false
+
+func set_anim_tree_blend_position(blend_position: Vector2, include_action_anims: bool) -> void:
+	if include_action_anims:
+		for action_anim_name in action_anim_names:
+			anim_tree.set("parameters/" + action_anim_name + "/BlendSpace2D/blend_position", blend_position)
+	for movement_anim_name in movement_anim_names:
+			anim_tree.set("parameters/" + movement_anim_name + "/BlendSpace2D/blend_position", blend_position)
+	
