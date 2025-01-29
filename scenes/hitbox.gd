@@ -7,7 +7,6 @@ func _init() -> void:
 	collision_layer = 5
 	collision_mask = 0
 
-	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -15,3 +14,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.has_method("take_damage"):
+		area.take_damage(damage)
+	pass # Replace with function body.
