@@ -17,3 +17,4 @@ func _process(delta: float) -> void:
 func take_damage(damage: int) -> void:
 	# parent health decrease? maybe do a check if parent has a health/take dam func?
 	print("ow from: " + str(get_parent()))
+	

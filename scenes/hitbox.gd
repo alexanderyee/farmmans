@@ -12,13 +12,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	pass
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.has_method("take_damage"):
-		area.take_damage(damage)
+	# TODO normally I wouldn't like doing this but the class functions as a
+	#      component sooo
+	if get_parent().has_method("deal_damage"):
+		get_parent().deal_damage(damage, area)
 	pass # Replace with function body.
-
 
 
 func _on_body_entered(body: Node2D) -> void:

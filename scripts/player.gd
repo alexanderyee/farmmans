@@ -21,6 +21,7 @@ var equipped_slot: int
 var face_direction := "down"
 var direction_regex: RegEx
 var in_action := false
+var enemies_hit := []
 
 # Start front idle animation on load
 func _ready():
@@ -144,6 +145,7 @@ func perform_tool_action(tool: Item, action_direction: String):
 	
 func perform_weapon_action(weapon: Item, action_direction: String):
 	in_action = true
+	enemies_hit = []
 	# TODO this is a one liner but nonetheless replicated code
 	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
 	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
@@ -156,6 +158,8 @@ func diagonal_to_cardinal(cardinal: String):
 		return matched_groups[0]
 	return matched_groups[1]
 
+# personal note: does this execute during a cancelled animation (e.g. we get hit
+# during an animation)
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if "sword" in anim_name or "hoe" in anim_name or "hatchet" in anim_name:
 		in_action = false
@@ -167,11 +171,8 @@ func set_anim_tree_blend_position(blend_position: Vector2, include_action_anims:
 	for movement_anim_name in movement_anim_names:
 			anim_tree.set("parameters/" + movement_anim_name + "/BlendSpace2D/blend_position", blend_position)
 	
-
-
-func _on_hit_box_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_hit_box_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+func deal_damage(damage: int, area: Area2D):
+	if !enemies_hit.has(area):
+		enemies_hit.append(area)
+		if area.has_method("take_damage"):
+			area.take_damage(damage)
