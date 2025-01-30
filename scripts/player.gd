@@ -44,12 +44,14 @@ func _physics_process(_delta):
 	
 	# check for primary action (left-click)
 	if Input.is_action_just_pressed("primary") and !in_action:
+		var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
 		if tool_equipped:
 			# aim towards mouse cursor
-			face_direction = diagonal_to_cardinal(mouse_direction)
+			face_direction = direction_to_cardinal(relative_mouse_direction_2d)
 			perform_tool_action(equipped_item, mouse_direction)
 		if weapon_equipped:
-			face_direction = diagonal_to_cardinal(mouse_direction)
+			face_direction = direction_to_cardinal(relative_mouse_direction_2d)
+			print("face_direction: " + face_direction)
 			perform_weapon_action(equipped_item, face_direction)
 			
 	# handle movement
@@ -70,7 +72,7 @@ func _physics_process(_delta):
 			set_anim_tree_blend_position(raw_input, false)
 		
 		if raw_input.length() > 0:
-			if abs(raw_input.x) > abs(raw_input.y): # prioritizing vertical movement
+			if abs(raw_input.x) >= abs(raw_input.y): # prioritizing horizontal movement
 				face_direction = "left" if raw_input.x < 0 else "right"
 			else:
 				face_direction = "up" if raw_input.y < 0 else "down"
@@ -152,11 +154,10 @@ func perform_weapon_action(weapon: Item, action_direction: String):
 
 	anim_tree.get("parameters/playback").travel("Sword")
 
-func diagonal_to_cardinal(cardinal: String):
-	var matched_groups = direction_regex.search(cardinal).get_strings()
-	if matched_groups[1].length() == 0:
-		return matched_groups[0]
-	return matched_groups[1]
+func direction_to_cardinal(dir: Vector2) -> String:
+	if abs(dir.x) >= abs(dir.y): # prioritizing horizontal movement
+		return "left" if dir.x < 0 else "right"
+	return "up" if dir.y < 0 else "down"
 
 # personal note: does this execute during a cancelled animation (e.g. we get hit
 # during an animation)

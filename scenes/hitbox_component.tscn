@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://boocwgymvd11b"]
+
+[ext_resource type="Script" path="res://scenes/hitbox.gd" id="1_to8i0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dc8aj"]
+radius = 0.01
+height = 0.02
+
+[node name="HitboxComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_to8i0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 4)
+rotation = 1.57038
+shape = SubResource("CapsuleShape2D_dc8aj")
+disabled = true
+debug_color = Color(0.98694, 0.083063, 0.189748, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

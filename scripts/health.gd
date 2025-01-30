@@ -1,4 +1,4 @@
-class_name Health
+class_name HealthComponent
 extends Node
 
 @export var health := 100
@@ -11,7 +11,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func subtract_health(damage: int):
+func subtract_health(damage: int) -> void:
 	health -= damage
 	if health <= 0:
-		get_parent().queue_free()
+		if get_parent().has_method("die"):
+			get_parent().die()
+		else:
+			get_parent().queue_free()
+
+func get_health() -> int:
+	return health

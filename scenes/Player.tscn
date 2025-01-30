@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d2giefpqv5po0" path="res://assets/character_animations/sword-right.png" id="3_3bs36"]
 [ext_resource type="Texture2D" uid="uid://dxjxyos7i8ep5" path="res://assets/character_animations/sword-left.png" id="3_f1rt6"]
 [ext_resource type="Texture2D" uid="uid://ccnaebtab0x3n" path="res://assets/character_animations/sword-up.png" id="5_sr8we"]
-[ext_resource type="Script" path="res://scenes/hitbox.gd" id="6_bsw43"]
+[ext_resource type="PackedScene" uid="uid://boocwgymvd11b" path="res://scenes/hitbox_component.tscn" id="7_sve20"]
+[ext_resource type="PackedScene" uid="uid://chqgdqhhpl82b" path="res://scenes/health_component.tscn" id="8_8ws56"]
 
 [sub_resource type="Animation" id="Animation_ghb7l"]
 length = 0.001
@@ -37,7 +38,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/CollisionShape2D:shape:height")
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:shape:height")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -49,7 +50,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox/CollisionShape2D:shape:radius")
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:shape:radius")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -61,7 +62,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/4/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -73,7 +74,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -85,7 +86,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/6/path = NodePath("HitboxComponent/CollisionShape2D:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -590,7 +591,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/CollisionShape2D:shape:height")
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:shape:height")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -602,7 +603,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox/CollisionShape2D:shape:radius")
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:shape:radius")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -614,7 +615,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/4/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -626,7 +627,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -638,7 +639,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/6/path = NodePath("HitboxComponent/CollisionShape2D:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -679,7 +680,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -691,7 +692,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox/CollisionShape2D:shape:radius")
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:shape:radius")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -703,7 +704,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/CollisionShape2D:shape:height")
+tracks/4/path = NodePath("HitboxComponent/CollisionShape2D:shape:height")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -715,7 +716,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -727,7 +728,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/6/path = NodePath("HitboxComponent/CollisionShape2D:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -767,7 +768,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -779,7 +780,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox/CollisionShape2D:shape:radius")
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:shape:radius")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -791,7 +792,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/CollisionShape2D:shape:height")
+tracks/4/path = NodePath("HitboxComponent/CollisionShape2D:shape:height")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -803,7 +804,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -815,7 +816,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/6/path = NodePath("HitboxComponent/CollisionShape2D:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -855,7 +856,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/CollisionShape2D:shape:height")
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:shape:height")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -867,7 +868,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox/CollisionShape2D:shape:radius")
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:shape:radius")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -879,7 +880,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/4/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -891,7 +892,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -903,7 +904,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/6/path = NodePath("HitboxComponent/CollisionShape2D:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2784,10 +2785,6 @@ size = Vector2(10, 6)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7o8e0"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dc8aj"]
-radius = 0.01
-height = 0.02
-
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 y_sort_enabled = true
@@ -2829,20 +2826,8 @@ position = Vector2(0, 13)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_7o8e0")
 
-[node name="HitBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
-script = ExtResource("6_bsw43")
+[node name="HitboxComponent" parent="." instance=ExtResource("7_sve20")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(11, 4)
-rotation = 1.57038
-shape = SubResource("CapsuleShape2D_dc8aj")
-disabled = true
-debug_color = Color(0.98694, 0.083063, 0.189748, 0.42)
+[node name="HealthComponent" parent="." instance=ExtResource("8_8ws56")]
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]
-[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
-[connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]

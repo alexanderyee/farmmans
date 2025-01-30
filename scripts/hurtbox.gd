@@ -1,6 +1,8 @@
 class_name HurtBox
 extends Area2D
 
+@onready var health_component: HealthComponent = $"../HealthComponent"
+
 func _init() -> void:
 	collision_layer = 16
 	collision_mask = 0
@@ -16,5 +18,6 @@ func _process(delta: float) -> void:
 	
 func take_damage(damage: int) -> void:
 	# parent health decrease? maybe do a check if parent has a health/take dam func?
-	print("ow from: " + str(get_parent()))
 	
+	health_component.subtract_health(damage)
+	print("ow from: " + str(get_parent()) + ", at " + str(health_component.get_health()) + " health")

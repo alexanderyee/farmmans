@@ -4,9 +4,9 @@ extends CharacterBody2D
 
 @export var speed := 15
 var player_ref = null
-var player_detected = false
-var animation_to_play = "idle_down" # TODO replace with default animation?
-
+var player_detected := false
+var animation_to_play := "idle_down" # TODO replace with default animation?
+var is_dying := false
 # TODO temp fix until we add walk_left
 var should_h_flip := false
 # Start front idle animation on load
@@ -18,6 +18,8 @@ func _physics_process(_delta):
 	# handle movement
 	# TODO should probably use the same logic for animation as player.gd
 	#	(use face_direction)
+	if is_dying:
+		return
 	if player_detected and player_ref:
 		var move_direction = (player_ref.position - position).normalized()
 		velocity = move_direction * speed 
@@ -34,7 +36,6 @@ func _physics_process(_delta):
 	animated_sprite.play(animation_to_play)
 	animated_sprite.flip_h = should_h_flip
 	move_and_slide()
-	pass
 
 func get_walk_animation(velo: Vector2):
 	var anim_to_play = "walk_"
@@ -47,6 +48,10 @@ func get_walk_animation(velo: Vector2):
 		return "idle_down"
 	return anim_to_play
 
+func die() -> void:
+	is_dying = true
+	animated_sprite.play("death")
+	
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	player_ref = body
 	player_detected = true
@@ -54,3 +59,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	player_ref = null
 	player_detected = false
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if is_dying:
+		queue_free()
