@@ -32,7 +32,7 @@ func _physics_process(_delta):
 	var tool_equipped := false
 	var weapon_equipped := false
 	var equipped_item = Inventory.get_item_at_slot(equipped_slot)
-	var mouse_direction := get_relative_mouse_direction()
+	var mouse_direction := get_relative_mouse_diagonal()
 	if equipped_item:
 		if equipped_item.type == "TOOL":
 			tool_equipped = true
@@ -44,14 +44,12 @@ func _physics_process(_delta):
 	
 	# check for primary action (left-click)
 	if Input.is_action_just_pressed("primary") and !in_action:
-		var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
+		var relative_mouse_direction_2d: Vector2 = get_relative_mouse_direction_2d()
+		face_direction = direction_to_cardinal(relative_mouse_direction_2d)
 		if tool_equipped:
-			# aim towards mouse cursor
-			face_direction = direction_to_cardinal(relative_mouse_direction_2d)
+			# aim towards mouse cursor diagonal
 			perform_tool_action(equipped_item, mouse_direction)
 		if weapon_equipped:
-			face_direction = direction_to_cardinal(relative_mouse_direction_2d)
-			print("face_direction: " + face_direction)
 			perform_weapon_action(equipped_item, face_direction)
 			
 	# handle movement
@@ -112,9 +110,8 @@ func on_item_picked_up(item:Item):
 	
 	emit_signal("inventory_change")
 
-func get_relative_mouse_direction() -> String:
-	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
-	var mouse_angle := relative_mouse_direction_2d.angle()
+func get_relative_mouse_diagonal() -> String:
+	var mouse_angle := get_relative_mouse_direction_2d().angle()
 	# TODO: any way to simplify 1/8PI or detect diagonals?
 	if mouse_angle > -1.0/8*PI and mouse_angle <= 1.0/8*PI:
 		return "right"
@@ -134,25 +131,23 @@ func get_relative_mouse_direction() -> String:
 		return "up_right"
 	return ""
 
-func perform_tool_action(tool: Item, action_direction: String):
+func perform_tool_action(tool: Item, action_direction: String) -> void:
 	in_action = true
-	emit_signal("tool_usage", tool.action, position, action_direction)
-	# TODO this is a one liner but nonetheless replicated code
-	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
+	var relative_mouse_direction_2d = get_relative_mouse_direction_2d()
 	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
-
 	anim_tree.get("parameters/playback").travel(tool.animation_name)
 	# set tile according to item's action
+	emit_signal("tool_usage", tool.action, position, action_direction)
 	return
 	
-func perform_weapon_action(weapon: Item, action_direction: String):
+func perform_weapon_action(weapon: Item, action_direction: String) -> void:
 	in_action = true
 	enemies_hit = []
 	# TODO this is a one liner but nonetheless replicated code
-	var relative_mouse_direction_2d = get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
+	var relative_mouse_direction_2d = get_relative_mouse_direction_2d()
 	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
-
 	anim_tree.get("parameters/playback").travel("Sword")
+	return
 
 func direction_to_cardinal(dir: Vector2) -> String:
 	if abs(dir.x) >= abs(dir.y): # prioritizing horizontal movement
@@ -177,3 +172,6 @@ func deal_damage(damage: int, area: Area2D):
 		enemies_hit.append(area)
 		if area.has_method("take_damage"):
 			area.take_damage(damage)
+
+func get_relative_mouse_direction_2d() -> Vector2:
+	return get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
