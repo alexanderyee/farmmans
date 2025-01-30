@@ -7,6 +7,8 @@ var player_ref = null
 var player_detected := false
 var animation_to_play := "idle_down" # TODO replace with default animation?
 var is_dying := false
+var hitstun_frames_remaining := 0
+
 # TODO temp fix until we add walk_left
 var should_h_flip := false
 # Start front idle animation on load
@@ -33,6 +35,12 @@ func _physics_process(_delta):
 	else:
 		velocity = Vector2.ZERO
 		animation_to_play = "idle_down"
+		# TODO make it wander
+	
+	# handle hitstun, on hit effects
+	if hitstun_frames_remaining > 0:
+		hitstun_frames_remaining -= 1
+	
 	animated_sprite.play(animation_to_play)
 	animated_sprite.flip_h = should_h_flip
 	move_and_slide()
@@ -47,6 +55,10 @@ func get_walk_animation(velo: Vector2):
 	else:
 		return "idle_down"
 	return anim_to_play
+
+func take_hitstun_frames(h_frames: int) -> void:
+	hitstun_frames_remaining = h_frames
+	# play animation
 
 func die() -> void:
 	is_dying = true

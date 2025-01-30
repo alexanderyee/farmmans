@@ -313,7 +313,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2kh8j")
 }],
 "loop": true,
-"name": &"hop _down",
+"name": &"hop_down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -545,7 +545,7 @@ shape = SubResource("CircleShape2D_h2ihh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
 sprite_frames = SubResource("SpriteFrames_eg6w8")
-animation = &"death"
+animation = &"new_animation_9"
 
 [node name="detection_area" type="Area2D" parent="."]
 collision_mask = 2
