@@ -167,11 +167,11 @@ func set_anim_tree_blend_position(blend_position: Vector2, include_action_anims:
 	for movement_anim_name in movement_anim_names:
 			anim_tree.set("parameters/" + movement_anim_name + "/BlendSpace2D/blend_position", blend_position)
 	
-func deal_damage(damage: int, hitstun_frames: int, area: Area2D):
+func deal_damage(damage: int, hitstun_frames: int, knockback: int, area: Area2D):
 	if !enemies_hit.has(area):
 		enemies_hit.append(area)
 		if area.has_method("take_damage"):
-			area.take_damage(damage, hitstun_frames)
+			area.take_damage(damage, hitstun_frames, knockback, position)
 
 func get_relative_mouse_direction_2d() -> Vector2:
 	return get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin

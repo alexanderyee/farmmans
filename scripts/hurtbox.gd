@@ -16,10 +16,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func take_damage(damage: int, hitstun_frames: int) -> void:
+func take_damage(damage: int, hitstun_frames: int, knockback: int, pos_hit_from: Vector2) -> void:
 	# parent health decrease? maybe do a check if parent has a health/take dam func?
 	
 	health_component.subtract_health(damage)
 	if get_parent().has_method("take_hitstun"):
-		get_parent().take_hitstun(hitstun_frames)
+		get_parent().take_hitstun(hitstun_frames, knockback, pos_hit_from)
 	print("ow from: " + str(get_parent()) + ", at " + str(health_component.get_health()) + " health")

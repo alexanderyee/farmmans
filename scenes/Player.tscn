@@ -2778,7 +2778,7 @@ states/Sword/position = Vector2(902, 37)
 states/Walk/node = SubResource("AnimationNodeBlendTree_gpeoh")
 states/Walk/position = Vector2(335, 318)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gbncp"), "Idle", "Sword", SubResource("AnimationNodeStateMachineTransition_0h1th"), "Sword", "Idle", SubResource("AnimationNodeStateMachineTransition_ouj0k"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_32ohd"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ux77y"), "Sword", "Walk", SubResource("AnimationNodeStateMachineTransition_8olce"), "Walk", "Sword", SubResource("AnimationNodeStateMachineTransition_1gcye"), "Hoe", "Idle", SubResource("AnimationNodeStateMachineTransition_bwktr"), "Idle", "Hoe", SubResource("AnimationNodeStateMachineTransition_wj7og"), "Walk", "Hoe", SubResource("AnimationNodeStateMachineTransition_u7phr"), "Hoe", "Walk", SubResource("AnimationNodeStateMachineTransition_hrrmg"), "Hatchet", "Idle", SubResource("AnimationNodeStateMachineTransition_jo5sh"), "Hatchet", "Walk", SubResource("AnimationNodeStateMachineTransition_vlkkc"), "Walk", "Hatchet", SubResource("AnimationNodeStateMachineTransition_gae1m"), "Idle", "Hatchet", SubResource("AnimationNodeStateMachineTransition_sediu"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_x758m"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_j4oco")]
-graph_offset = Vector2(-245, -26)
+graph_offset = Vector2(-292, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjlbj"]
 size = Vector2(10, 6)
@@ -2827,6 +2827,8 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_7o8e0")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("7_sve20")]
+damage = 5
+hitstun_frames = 28
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_8ws56")]
 
