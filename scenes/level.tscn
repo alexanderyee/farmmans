@@ -478,7 +478,7 @@ size_flags_vertical = 3
 
 [node name="Hotbar" parent="UIRoot" groups=["inventory_ui"] instance=ExtResource("16_1pid8")]
 
-[node name="Node2D" parent="." instance=ExtResource("9_3bi3q")]
+[node name="CornSeedPickup" parent="." instance=ExtResource("9_3bi3q")]
 position = Vector2(151, 120)
 item = ExtResource("20_ig67m")
 

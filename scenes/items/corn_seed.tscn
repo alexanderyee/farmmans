@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cixxrfw1rb1xv" path="res://assets/items/items-spritesheet.png" id="1_f0yjt"]
 
-[node name="hatchet" type="Sprite2D"]
+[node name="CornSeedIcon" type="Sprite2D"]
 texture_filter = 1
 texture = ExtResource("1_f0yjt")
 region_enabled = true

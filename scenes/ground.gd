@@ -12,13 +12,14 @@ func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String
 	# get atlas coord for tile
 	var atlas_coords = soil.get_cell_atlas_coords(soil_cell)
 	
-	# tilling (hoe)
-	if action == "TILL":
-		# we should only be able to till flat ground (no cliffs, slopes, hills)
-		# TODO replace with custom data attached to tilesets
-		if atlas_coords == FLAT_GROUND_ATLAS_COORDS or atlas_coords.y >= 5:
-			soil.set_cell(soil_cell, SOIL_ATLAS_ID, FLAT_GROUND_ATLAS_COORDS)
-			
+	match action:
+		"TILL":
+			# we should only be able to till flat ground (no cliffs, slopes, hills)
+			# TODO replace with custom data attached to tilesets
+			if atlas_coords == FLAT_GROUND_ATLAS_COORDS or atlas_coords.y >= 5:
+				soil.set_cell(soil_cell, SOIL_ATLAS_ID, FLAT_GROUND_ATLAS_COORDS)
+		"PLANT_SEED"
+	
 	pass
 
 
