@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4etlgtph7c8i"]
+
+[ext_resource type="Texture2D" uid="uid://cixxrfw1rb1xv" path="res://assets/items/items-spritesheet.png" id="1_f0yjt"]
+
+[node name="hatchet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_f0yjt")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)

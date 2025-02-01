@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btncht2fkq4rs"
-path="res://.godot/imported/iron_ore.png-29c8a99d5f110093d3821d4b245639a5.ctex"
+uid="uid://dw4f43nisvufn"
+path="res://.godot/imported/hatchet.png-8bfb50182a661315f7eb1f4f95d6b0b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/iron_ore.png"
-dest_files=["res://.godot/imported/iron_ore.png-29c8a99d5f110093d3821d4b245639a5.ctex"]
+source_file="res://assets/items/hatchet.png"
+dest_files=["res://.godot/imported/hatchet.png-8bfb50182a661315f7eb1f4f95d6b0b0.ctex"]
 
 [params]
 

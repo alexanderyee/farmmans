@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwupg7a8rgvjq"]
 
-[ext_resource type="Texture2D" uid="uid://qhv6ynq5s2ls" path="res://assets/objects/sword_icon.png" id="1_mh7w0"]
+[ext_resource type="Texture2D" uid="uid://qhv6ynq5s2ls" path="res://assets/items/sword_icon.png" id="1_mh7w0"]
 
 [node name="Sword" type="Sprite2D"]
 texture_filter = 1

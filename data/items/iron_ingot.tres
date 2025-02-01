@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dam8t28v4vaxh"]
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_hwaci"]
-[ext_resource type="Texture2D" uid="uid://o1kq2he2xc5k" path="res://assets/objects/iron_ingot.png" id="1_n38hb"]
+[ext_resource type="Texture2D" uid="uid://o1kq2he2xc5k" path="res://assets/items/iron_ingot.png" id="1_n38hb"]
 [ext_resource type="PackedScene" uid="uid://dgv3bq2fwcu68" path="res://scenes/items/iron_ingot.tscn" id="2_fcutv"]
 
 [resource]

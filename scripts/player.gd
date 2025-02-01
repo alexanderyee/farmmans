@@ -22,6 +22,7 @@ var face_direction := "down"
 var direction_regex: RegEx
 var in_action := false
 var enemies_hit := []
+var sword_timescale_frame_counter := 0
 
 # Start front idle animation on load
 func _ready():
@@ -58,6 +59,10 @@ func _physics_process(_delta):
 	
 	if in_action:
 		velocity = Vector2.ZERO
+		if sword_timescale_frame_counter > 0:
+			sword_timescale_frame_counter -= 1
+			if sword_timescale_frame_counter == 0:
+				anim_tree.set("parameters/Sword/TimeScale/scale", 1.0)
 	else:
 		if raw_input == Vector2.ZERO:
 			anim_tree.get("parameters/playback").travel("Idle")
@@ -172,6 +177,8 @@ func deal_damage(damage: int, hitstun_frames: int, knockback: int, area: Area2D)
 		enemies_hit.append(area)
 		if area.has_method("take_damage"):
 			area.take_damage(damage, hitstun_frames, knockback, position)
+		sword_timescale_frame_counter = hitstun_frames / 4
+		anim_tree.set("parameters/Sword/TimeScale/scale", 0.5)
 
 func get_relative_mouse_direction_2d() -> Vector2:
 	return get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin

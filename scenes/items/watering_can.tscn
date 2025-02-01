@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5fvj3nogt542"]
 
-[ext_resource type="Texture2D" uid="uid://cy034a4nvjocr" path="res://assets/objects/watering_can.png" id="1_im733"]
+[ext_resource type="Texture2D" uid="uid://cy034a4nvjocr" path="res://assets/items/watering_can.png" id="1_im733"]
 
 [node name="watering_can" type="Sprite2D"]
 texture_filter = 1

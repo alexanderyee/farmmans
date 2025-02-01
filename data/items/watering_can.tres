@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dtfkgr1n0eork"]
 
-[ext_resource type="Texture2D" uid="uid://cy034a4nvjocr" path="res://assets/objects/watering_can.png" id="1_ednup"]
+[ext_resource type="Texture2D" uid="uid://cy034a4nvjocr" path="res://assets/items/watering_can.png" id="1_bm3hf"]
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_nugl5"]
 [ext_resource type="PackedScene" uid="uid://b5fvj3nogt542" path="res://scenes/items/watering_can.tscn" id="2_rgyf5"]
 
@@ -8,9 +8,9 @@
 script = ExtResource("1_nugl5")
 name = "Watering Can"
 scene = ExtResource("2_rgyf5")
-icon = ExtResource("1_ednup")
+icon = ExtResource("1_bm3hf")
 price = 2
-animation_name = "watering_can"
+animation_name = "Water"
 is_equippable = true
 type = "TOOL"
 action = "WATER"

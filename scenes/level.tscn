@@ -14,13 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://dh4kvr6loud8w" path="res://assets/tilesets/Grass_Hill_Tiles_v2.png" id="9_bib7o"]
 [ext_resource type="Resource" uid="uid://cvi457p70i37n" path="res://data/items/hoe.tres" id="10_iw1v0"]
 [ext_resource type="Script" path="res://scripts/ui_root.gd" id="11_q842f"]
-[ext_resource type="Resource" uid="uid://b127pqj86ivgc" path="res://data/items/iron_ore.tres" id="11_yke47"]
 [ext_resource type="PackedScene" uid="uid://c0ehnoptupjln" path="res://ui/inventory_dialog/inventory_dialog.tscn" id="12_0xrmr"]
+[ext_resource type="Resource" uid="uid://c0e7m7siogb82" path="res://data/items/hatchet.tres" id="13_kmnrw"]
 [ext_resource type="PackedScene" uid="uid://c1tvlsdxy5ifl" path="res://ui/crafting_dialog/crafting_dialog.tscn" id="13_m5sev"]
 [ext_resource type="Resource" uid="uid://fk7jrhlprjtm" path="res://data/all_recipes.tres" id="13_tl888"]
 [ext_resource type="PackedScene" uid="uid://cx0fw8jjr52x7" path="res://ui/hotbar/hotbar.tscn" id="16_1pid8"]
 [ext_resource type="Resource" uid="uid://h4hogihufbo7" path="res://data/items/sword.tres" id="16_kart4"]
-[ext_resource type="PackedScene" uid="uid://o5vongcsfxq" path="res://scenes/mobs/slime.tscn" id="23_ljspo"]
+[ext_resource type="Resource" uid="uid://cgtiv3soknkxd" path="res://data/items/corn_seed.tres" id="20_ig67m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yrcx"]
 shader = ExtResource("4_q4dy2")
@@ -434,25 +434,15 @@ tile_set = SubResource("TileSet_2vprq")
 position = Vector2(182, 41)
 
 [node name="hatchet" parent="." instance=ExtResource("9_3bi3q")]
+position = Vector2(131, 63)
+item = ExtResource("13_kmnrw")
 
 [node name="hoe" parent="." instance=ExtResource("9_3bi3q")]
-position = Vector2(135, 99)
+position = Vector2(105, 63)
 item = ExtResource("10_iw1v0")
 
-[node name="iron ore" parent="." instance=ExtResource("9_3bi3q")]
-position = Vector2(107, 134)
-item = ExtResource("11_yke47")
-
-[node name="iron ore2" parent="." instance=ExtResource("9_3bi3q")]
-position = Vector2(152, 148)
-item = ExtResource("11_yke47")
-
-[node name="iron ore3" parent="." instance=ExtResource("9_3bi3q")]
-position = Vector2(64, 146)
-item = ExtResource("11_yke47")
-
 [node name="sword" parent="." instance=ExtResource("9_3bi3q")]
-position = Vector2(216, 158)
+position = Vector2(82, 63)
 item = ExtResource("16_kart4")
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
@@ -488,8 +478,9 @@ size_flags_vertical = 3
 
 [node name="Hotbar" parent="UIRoot" groups=["inventory_ui"] instance=ExtResource("16_1pid8")]
 
-[node name="enemy" parent="." instance=ExtResource("23_ljspo")]
-position = Vector2(184, 113)
+[node name="Node2D" parent="." instance=ExtResource("9_3bi3q")]
+position = Vector2(151, 120)
+item = ExtResource("20_ig67m")
 
 [connection signal="highlight_tile_tool" from="Player" to="ground" method="_on_player_highlight_tile_tool"]
 [connection signal="inventory_change" from="Player" to="UIRoot/InventoryDialog" method="_on_player_inventory_change"]

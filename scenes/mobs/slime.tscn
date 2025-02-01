@@ -1,15 +1,17 @@
-[gd_scene load_steps=75 format=3 uid="uid://o5vongcsfxq"]
+[gd_scene load_steps=74 format=3 uid="uid://o5vongcsfxq"]
 
 [ext_resource type="Script" path="res://scripts/mobs/slime_mob.gd" id="1_jo2sw"]
 [ext_resource type="Texture2D" uid="uid://cwmymo6eidtg" path="res://assets/mobs/slime.png" id="1_t0y10"]
 [ext_resource type="Shader" path="res://shaders/slime.gdshader" id="2_6chsw"]
 [ext_resource type="PackedScene" uid="uid://bf0pfmfs8kvp4" path="res://scenes/hurtbox_component.tscn" id="3_xhlso"]
+[ext_resource type="Texture2D" uid="uid://bocpnfmswudky" path="res://assets/mobs/blue_slime_mobhit_front_2.png" id="4_e8o83"]
 [ext_resource type="PackedScene" uid="uid://chqgdqhhpl82b" path="res://scenes/health_component.tscn" id="4_jf67t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2ihh"]
 radius = 9.05539
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wy7vf"]
+resource_local_to_scene = true
 shader = ExtResource("2_6chsw")
 shader_parameter/is_in_hitstop = false
 shader_parameter/flash_intensity = 1.0
@@ -34,17 +36,9 @@ region = Rect2(96, 384, 32, 32)
 atlas = ExtResource("1_t0y10")
 region = Rect2(128, 384, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_77c0r"]
-atlas = ExtResource("1_t0y10")
-region = Rect2(0, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ue7fy"]
-atlas = ExtResource("1_t0y10")
-region = Rect2(32, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ricx2"]
-atlas = ExtResource("1_t0y10")
-region = Rect2(64, 288, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h0on"]
+atlas = ExtResource("4_e8o83")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3c8dk"]
 atlas = ExtResource("1_t0y10")
@@ -298,13 +292,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_77c0r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ue7fy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ricx2")
+"texture": SubResource("AtlasTexture_3h0on")
 }],
 "loop": true,
 "name": &"front_hit",
@@ -554,6 +542,7 @@ texture_filter = 3
 material = SubResource("ShaderMaterial_wy7vf")
 sprite_frames = SubResource("SpriteFrames_eg6w8")
 animation = &"front_hit"
+frame_progress = 0.759571
 
 [node name="detection_area" type="Area2D" parent="."]
 collision_mask = 2

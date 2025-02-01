@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci1y1f3yt1vb6"
-path="res://.godot/imported/hoe.png-2f58b23da683046ed97c5d3bb0619256.ctex"
+uid="uid://btncht2fkq4rs"
+path="res://.godot/imported/iron_ore.png-a6c49bce7da83ff979ddbf8134e36b4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/hoe.png"
-dest_files=["res://.godot/imported/hoe.png-2f58b23da683046ed97c5d3bb0619256.ctex"]
+source_file="res://assets/items/iron_ore.png"
+dest_files=["res://.godot/imported/iron_ore.png-a6c49bce7da83ff979ddbf8134e36b4b.ctex"]
 
 [params]
 

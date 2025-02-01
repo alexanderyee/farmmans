@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qhv6ynq5s2ls"
-path="res://.godot/imported/sword_icon.png-c427bfb88981926efc8464807e4b6021.ctex"
+uid="uid://k32xx6eoo5d"
+path="res://.godot/imported/corn_seed_icon.png-f4c765dc45f5a95fddfacfda3e596ae2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/sword_icon.png"
-dest_files=["res://.godot/imported/sword_icon.png-c427bfb88981926efc8464807e4b6021.ctex"]
+source_file="res://assets/items/corn_seed_icon.png"
+dest_files=["res://.godot/imported/corn_seed_icon.png-f4c765dc45f5a95fddfacfda3e596ae2.ctex"]
 
 [params]
 

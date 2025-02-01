@@ -52,20 +52,7 @@ func _physics_process(delta):
 	# handle hitstun, on hit effects
 	# hitstun animation # TODO probs better belongs in a func
 	if hitstun_frames_remaining > 0:
-		# make it shake
-		# we change the offset of only the sprite every 4 frames
-		if hitstun_frames_remaining % 4 == 0:
-			var offset_mult := 1
-			# decide whether to offset left or right 
-			if hitstun_frames_remaining % 8 == 0:
-				offset_mult = -1
-			var offset := rng.randi_range(0, 2)
-			animated_sprite.offset.x = offset * offset_mult
-			
-		# knockback
-		# lerp towards position it should be knocked back towards
-		knockback_t += delta * 0.4
-		position = position_from_on_hit.lerp(knockback_position, knockback_t)
+		
 		
 		# flash
 		# flash by changing brightness
@@ -74,8 +61,23 @@ func _physics_process(delta):
 			var brightness = lerp(1.0, hitstop_flash_intensity, t)
 			animated_sprite.material.set_shader_parameter("is_in_hitstop", true)
 			animated_sprite.material.set_shader_parameter("flash_intensity", brightness)
-			hitstop_flash_timer -= delta
 			
+			# we change the offset of only the sprite every 4 frames
+			if hitstun_frames_remaining % 4 == 0:
+				var offset_mult := 1
+				# decide whether to offset left or right 
+				if hitstun_frames_remaining % 8 == 0:
+					offset_mult = -1
+				var offset := rng.randi_range(0, 2)
+				animated_sprite.offset.x = offset * offset_mult
+			
+			hitstop_flash_timer -= delta
+		else:
+			# only start applying knockback after hitstop
+			# lerp towards position it should be knocked back towards
+			knockback_t += delta * 0.4
+			position = position_from_on_hit.lerp(knockback_position, knockback_t)
+		
 		# change animation/interpolate damage pose
 		animation_to_play = "front_hit"
 		
