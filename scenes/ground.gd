@@ -3,6 +3,7 @@ extends Node2D
 @onready var soil: TileMapLayer = $Soil
 @onready var grass: TileMapLayer = $Grass
 @onready var grass_hill: TileMapLayer = $GrassHill
+@onready var soil_2: TileMapLayer = $Soil2
 
 # constants
 const SOIL_ATLAS_ID := 0
@@ -21,10 +22,9 @@ func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String
 			# TODO replace with custom data attached to tilesets
 			if atlas_coords == FLAT_GROUND_ATLAS_COORDS or atlas_coords.y >= 5:
 				# we just remove the grass
-				grass.erase_cell(soil_cell)
 				# get adjacent cells
 				
-				#grass.set_cells_terrain_path(get_adjacent_cells(soil_cell), 0, 1)
+				soil_2.set_cells_terrain_connect([soil_cell], 0, 2)
 				# we still set the soil to match what was on grass
 				#soil.set_cell(soil_cell, SOIL_ATLAS_ID, atlas_coords)
 		"PLANT":
