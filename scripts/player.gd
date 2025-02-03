@@ -137,12 +137,13 @@ func get_relative_mouse_diagonal() -> String:
 	return ""
 
 func perform_tool_action(tool: Item, action_direction: String) -> void:
-	in_action = true
 	var relative_mouse_direction_2d = get_relative_mouse_direction_2d()
 	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
-	anim_tree.get("parameters/playback").travel(tool.animation_name)
+	if tool.animation_name in action_anim_names:
+		anim_tree.get("parameters/playback").travel(tool.animation_name)
+		in_action = true
 	# set tile according to item's action
-	emit_signal("tool_usage", tool.action, position, action_direction)
+	emit_signal("tool_usage", tool, position, action_direction)
 	return
 	
 func perform_weapon_action(weapon: Item, action_direction: String) -> void:

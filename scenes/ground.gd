@@ -1,89 +1,84 @@
 extends Node2D
 
-@onready var soil: TileMapLayer = $Soil
 @onready var grass: TileMapLayer = $Grass
 @onready var grass_hill: TileMapLayer = $GrassHill
-@onready var soil_2: TileMapLayer = $Soil2
+@onready var tilled_soil: TileMapLayer = $TilledSoil
+@onready var farm_plants: TileMapLayer = $FarmPlants
 
 # constants
-const SOIL_ATLAS_ID := 0
+const LAYER_NAMES := ["GRASS_HILL", "GRASS", "TILLED_SOIL"]
+const GROUND_ATLAS_ID := 0
 const FLAT_GROUND_ATLAS_COORDS := Vector2i(1, 1)
 const GRASS_TERRAIN_ID := 1
+const TILLED_SOIL_ID := 2
+const FARM_PLANTS_SOURCE_ID := 8
 
-func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String) -> void:
-	var soil_cell := get_relative_tile_to_player(player_pos, direction)
+func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) -> void:
+	var ground_cell := get_relative_tile_to_player(player_pos, direction)
 	
-	# get atlas coord for tile
-	var atlas_coords = soil.get_cell_atlas_coords(soil_cell)
+	# get atlas coords for tile
+	var grass_atlas_coords = grass.get_cell_atlas_coords(ground_cell)
+	var tilled_atlas_coords = tilled_soil.get_cell_atlas_coords(ground_cell)
 	
-	match action:
+	match tool.action:
 		"TILL":
 			# we should only be able to till flat ground (no cliffs, slopes, hills)
-			# TODO replace with custom data attached to tilesets
-			if atlas_coords == FLAT_GROUND_ATLAS_COORDS or atlas_coords.y >= 5:
-				# we just remove the grass
-				# get adjacent cells
-				
-				soil_2.set_cells_terrain_connect([soil_cell], 0, 2)
-				# we still set the soil to match what was on grass
-				#soil.set_cell(soil_cell, SOIL_ATLAS_ID, atlas_coords)
+			# TODO replace with custom data attached to tilesets (could possibly also use custom
+			#      data for planting seeds
+			if grass_atlas_coords == FLAT_GROUND_ATLAS_COORDS or grass_atlas_coords.y >= 5:
+				tilled_soil.set_cells_terrain_connect([ground_cell], GROUND_ATLAS_ID, TILLED_SOIL_ID)
 		"PLANT":
 			# should only be able to plant on tilled ground
-				if atlas_coords == FLAT_GROUND_ATLAS_COORDS:
-					pass
+			if tilled_atlas_coords.x >= 0 and tilled_atlas_coords.y >= 0:
+				var seed_atlas_coords = get_seed_atlas_coords(tool)
+				if seed_atlas_coords.x >= 0 and seed_atlas_coords.y >= 0:
+					farm_plants.set_cell(ground_cell, FARM_PLANTS_SOURCE_ID, seed_atlas_coords)
+				pass
 	
 	pass
 
 
 func _on_player_highlight_tile_tool(player_pos:Vector2, direction: String, tool_equipped: bool) -> void:
-	var soil_cell := get_relative_tile_to_player(player_pos, direction)
+	var ground_cell := get_relative_tile_to_player(player_pos, direction)
 	
 	# params for shader code
 	var tile_size = Vector2(16, 16)
 	var highlight_color = Vector4(1.0, 1.0, 1.0, 1.0)
-	var map_local = soil.map_to_local(soil_cell)
-	soil.material.set_shader_parameter("tile_size", tile_size)
-	soil.material.set_shader_parameter("highlight_pos", Vector2(soil_cell))
-	soil.material.set_shader_parameter("highlight_color", highlight_color)
-	soil.material.set_shader_parameter("highlight_intensity", 0.2)
-	soil.material.set_shader_parameter("tool_equipped", tool_equipped)
+	var map_local = grass.map_to_local(ground_cell)
+	grass.material.set_shader_parameter("tile_size", tile_size)
+	grass.material.set_shader_parameter("highlight_pos", Vector2(ground_cell))
+	grass.material.set_shader_parameter("highlight_color", highlight_color)
+	grass.material.set_shader_parameter("highlight_intensity", 0.2)
+	grass.material.set_shader_parameter("tool_equipped", tool_equipped)
 
 
 func get_relative_tile_to_player(player_pos:Vector2, direction: String) -> Vector2i:
-	var soil_cell : Vector2i = (soil.local_to_map(player_pos))
+	var cell : Vector2i = (grass.local_to_map(player_pos))
 	match direction:
 		# TODO maybe just split into ternarys left/right up/down?
 		"right":
-			soil_cell.x += 1
+			cell.x += 1
 		"down_right":
-			soil_cell.x += 1
-			soil_cell.y += 1
+			cell.x += 1
+			cell.y += 1
 		"down":
-			soil_cell.y += 1
+			cell.y += 1
 		"down_left":
-			soil_cell.x -= 1
-			soil_cell.y += 1
+			cell.x -= 1
+			cell.y += 1
 		"left":
-			soil_cell.x -= 1
+			cell.x -= 1
 		"up_left":
-			soil_cell.x -= 1
-			soil_cell.y -= 1
+			cell.x -= 1
+			cell.y -= 1
 		"up":
-			soil_cell.y -= 1
+			cell.y -= 1
 		"up_right":
-			soil_cell.y -= 1
-			soil_cell.x += 1
-	return soil_cell
+			cell.y -= 1
+			cell.x += 1
+	return cell
 
-func get_adjacent_cells(cell: Vector2i) -> Array:
-	var directions := [
-		Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1), # Top-left,    Top,   Top-right
-		Vector2i(-1, 0),                   Vector2i(1, 0),  # Left,                Right
-		Vector2i(-1, 1), Vector2i(0, 1),   Vector2i(1, 1)   # Bottom-left, Bottom, Bottom-right
-	]
-	
-	var adjacent_cells := []
-	for dir in directions:
-		adjacent_cells.append(cell + dir)
-	
-	return adjacent_cells
+func get_seed_atlas_coords(item: Item) -> Vector2i:
+	if item.name == "Corn Seed":
+		return Vector2i(0, 1)
+	return Vector2i(-1, -1)
