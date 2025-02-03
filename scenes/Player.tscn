@@ -2795,6 +2795,7 @@ z_index = 1
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_uwic5")
+speed = 100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

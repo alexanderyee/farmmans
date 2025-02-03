@@ -556,6 +556,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.0823529)
 visible = false
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_jf67t")]
+health = 15
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]

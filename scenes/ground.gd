@@ -1,10 +1,13 @@
 extends Node2D
 
-@onready var soil: TileMapLayer = $soil
+@onready var soil: TileMapLayer = $Soil
+@onready var grass: TileMapLayer = $Grass
+@onready var grass_hill: TileMapLayer = $GrassHill
 
 # constants
 const SOIL_ATLAS_ID := 0
 const FLAT_GROUND_ATLAS_COORDS := Vector2i(1, 1)
+const GRASS_TERRAIN_ID := 1
 
 func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String) -> void:
 	var soil_cell := get_relative_tile_to_player(player_pos, direction)
@@ -17,10 +20,16 @@ func _on_player_tool_usage(action: String, player_pos:Vector2, direction: String
 			# we should only be able to till flat ground (no cliffs, slopes, hills)
 			# TODO replace with custom data attached to tilesets
 			if atlas_coords == FLAT_GROUND_ATLAS_COORDS or atlas_coords.y >= 5:
-				soil.set_cell(soil_cell, SOIL_ATLAS_ID, FLAT_GROUND_ATLAS_COORDS)
+				# we just remove the grass
+				grass.erase_cell(soil_cell)
+				# get adjacent cells
+				
+				#grass.set_cells_terrain_path(get_adjacent_cells(soil_cell), 0, 1)
+				# we still set the soil to match what was on grass
+				#soil.set_cell(soil_cell, SOIL_ATLAS_ID, atlas_coords)
 		"PLANT":
 			# should only be able to plant on tilled ground
-				if atlas_coords == SOIL_ATLAS_ID:
+				if atlas_coords == FLAT_GROUND_ATLAS_COORDS:
 					pass
 	
 	pass
@@ -65,3 +74,16 @@ func get_relative_tile_to_player(player_pos:Vector2, direction: String) -> Vecto
 			soil_cell.y -= 1
 			soil_cell.x += 1
 	return soil_cell
+
+func get_adjacent_cells(cell: Vector2i) -> Array:
+	var directions := [
+		Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1), # Top-left,    Top,   Top-right
+		Vector2i(-1, 0),                   Vector2i(1, 0),  # Left,                Right
+		Vector2i(-1, 1), Vector2i(0, 1),   Vector2i(1, 1)   # Bottom-left, Bottom, Bottom-right
+	]
+	
+	var adjacent_cells := []
+	for dir in directions:
+		adjacent_cells.append(cell + dir)
+	
+	return adjacent_cells
