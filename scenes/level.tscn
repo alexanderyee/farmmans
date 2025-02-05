@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://befbhe75nbkbk"]
+[gd_scene load_steps=36 format=4 uid="uid://befbhe75nbkbk"]
 
 [ext_resource type="PackedScene" uid="uid://cjyax66vpcugl" path="res://scenes/Player.tscn" id="1_p5htu"]
 [ext_resource type="Texture2D" uid="uid://y6k4gt0t1x5t" path="res://assets/tilesets/Soil_Ground_Hills_Tiles.png" id="3_5s8cj"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cx0fw8jjr52x7" path="res://ui/hotbar/hotbar.tscn" id="16_1pid8"]
 [ext_resource type="Resource" uid="uid://h4hogihufbo7" path="res://data/items/sword.tres" id="16_kart4"]
 [ext_resource type="Resource" uid="uid://cgtiv3soknkxd" path="res://data/items/corn_seed.tres" id="20_ig67m"]
+[ext_resource type="Script" path="res://scenes/crop_manager.gd" id="24_t8vni"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yrcx"]
 shader = ExtResource("4_q4dy2")
@@ -1400,7 +1401,12 @@ size_flags_vertical = 3
 position = Vector2(151, 120)
 item = ExtResource("20_ig67m")
 
+[node name="CropManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("24_t8vni")
+
 [connection signal="highlight_tile_tool" from="Player" to="ground" method="_on_player_highlight_tile_tool"]
 [connection signal="inventory_change" from="Player" to="UIRoot/InventoryDialog" method="_on_player_inventory_change"]
 [connection signal="inventory_change" from="Player" to="UIRoot/Hotbar" method="_on_player_inventory_change"]
 [connection signal="tool_usage" from="Player" to="ground" method="_on_player_tool_usage"]
+[connection signal="grow_crop" from="CropManager" to="ground" method="_on_crop_manager_grow_crop"]

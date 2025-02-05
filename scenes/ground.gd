@@ -4,6 +4,7 @@ extends Node2D
 @onready var grass_hill: TileMapLayer = $GrassHill
 @onready var tilled_soil: TileMapLayer = $TilledSoil
 @onready var farm_plants: TileMapLayer = $FarmPlants
+@onready var crop_manager: CropManager = %CropManager
 
 # constants
 const LAYER_NAMES := ["GRASS_HILL", "GRASS", "TILLED_SOIL"]
@@ -33,6 +34,7 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 				var seed_atlas_coords = get_seed_atlas_coords(tool)
 				if seed_atlas_coords.x >= 0 and seed_atlas_coords.y >= 0:
 					farm_plants.set_cell(ground_cell, FARM_PLANTS_SOURCE_ID, seed_atlas_coords)
+					crop_manager.add_crop(tool, ground_cell)
 				pass
 	
 	pass
@@ -82,3 +84,8 @@ func get_seed_atlas_coords(item: Item) -> Vector2i:
 	if item.name == "Corn Seed":
 		return Vector2i(0, 1)
 	return Vector2i(-1, -1)
+
+
+func _on_crop_manager_grow_crop() -> void:
+	
+	pass # Replace with function body.
