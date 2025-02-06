@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b127pqj86ivgc"]
 
-[ext_resource type="Script" path="res://scripts/item.gd" id="1_8rqae"]
+[ext_resource type="Script" uid="uid://dhcvh3gqej8d8" path="res://scripts/item.gd" id="1_8rqae"]
 [ext_resource type="Texture2D" uid="uid://btncht2fkq4rs" path="res://assets/items/iron_ore.png" id="1_825v5"]
 [ext_resource type="PackedScene" uid="uid://csk8kxnx6xbpd" path="res://scenes/items/iron_ore.tscn" id="2_ya1g6"]
 

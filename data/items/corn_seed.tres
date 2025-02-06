@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cgtiv3soknkxd"]
 
-[ext_resource type="Script" path="res://scripts/item.gd" id="1_6hnmc"]
+[ext_resource type="Script" uid="uid://dhcvh3gqej8d8" path="res://scripts/item.gd" id="1_6hnmc"]
 [ext_resource type="PackedScene" uid="uid://b4etlgtph7c8i" path="res://scenes/items/corn_seed.tscn" id="1_sqynb"]
 [ext_resource type="Texture2D" uid="uid://k32xx6eoo5d" path="res://assets/items/corn_seed_icon.png" id="1_ybopn"]
 

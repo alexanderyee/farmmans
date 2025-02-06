@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c0e7m7siogb82"]
 
 [ext_resource type="Texture2D" uid="uid://dw4f43nisvufn" path="res://assets/items/hatchet.png" id="1_3v0uf"]
-[ext_resource type="Script" path="res://scripts/item.gd" id="1_lbu51"]
+[ext_resource type="Script" uid="uid://dhcvh3gqej8d8" path="res://scripts/item.gd" id="1_lbu51"]
 [ext_resource type="PackedScene" uid="uid://bm3irko5baldg" path="res://scenes/items/hatchet.tscn" id="2_i0b34"]
 
 [resource]

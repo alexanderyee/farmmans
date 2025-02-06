@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cjyax66vpcugl" path="res://scenes/Player.tscn" id="1_p5htu"]
 [ext_resource type="Texture2D" uid="uid://y6k4gt0t1x5t" path="res://assets/tilesets/Soil_Ground_Hills_Tiles.png" id="3_5s8cj"]
 [ext_resource type="Script" path="res://scenes/ground.gd" id="3_jraoe"]
-[ext_resource type="Material" uid="uid://5tugyjo66gwp" path="res://shaders/ground_shader_material.tres" id="3_vap8h"]
+[ext_resource type="Material" uid="uid://conlcjvr7wxru" path="res://shaders/ground_shader_material.tres" id="3_vap8h"]
 [ext_resource type="Texture2D" uid="uid://dv5bqk0gotvc1" path="res://assets/tilesets/Grass_Tile_Layers.png" id="4_e57ve"]
 [ext_resource type="Texture2D" uid="uid://rrlkxfwilrxa" path="res://assets/tilesets/Grass_Hill_Tiles_Slopes v.2.png" id="5_21ben"]
 [ext_resource type="Texture2D" uid="uid://bvd4hst5exnf3" path="res://assets/tilesets/Darker_Grass_Hills_Tiles_v2.png" id="5_je68k"]
@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cx0fw8jjr52x7" path="res://ui/hotbar/hotbar.tscn" id="16_1pid8"]
 [ext_resource type="Resource" uid="uid://h4hogihufbo7" path="res://data/items/sword.tres" id="16_kart4"]
 [ext_resource type="Resource" uid="uid://cgtiv3soknkxd" path="res://data/items/corn_seed.tres" id="20_ig67m"]
-[ext_resource type="Script" path="res://scenes/crop_manager.gd" id="24_t8vni"]
+[ext_resource type="Script" uid="uid://dy142a3bj1r2v" path="res://scenes/crop_manager.gd" id="24_t8vni"]
 [ext_resource type="Resource" uid="uid://dtfkgr1n0eork" path="res://data/items/watering_can.tres" id="25_fugfo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd3cu"]
