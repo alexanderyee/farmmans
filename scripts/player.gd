@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Constants
-const action_anim_names := ["Hoe", "Hatchet", "Sword"] # TODO map these to resourcetable
+const action_anim_names := ["Hoe", "Hatchet", "Sword", "Water"] # TODO map these to resourcetable
 const movement_anim_names := ["Idle", "Run", "Walk"]
 
 # Signals
@@ -163,7 +163,7 @@ func direction_to_cardinal(dir: Vector2) -> String:
 # personal note: does this execute during a cancelled animation (e.g. we get hit
 # during an animation)
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	if "sword" in anim_name or "hoe" in anim_name or "hatchet" in anim_name:
+	if anim_name.capitalize().get_slice(" ", 0) in action_anim_names:
 		in_action = false
 
 func set_anim_tree_blend_position(blend_position: Vector2, include_action_anims: bool) -> void:

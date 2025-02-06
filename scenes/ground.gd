@@ -4,6 +4,7 @@ extends Node2D
 @onready var grass_hill: TileMapLayer = $GrassHill
 @onready var tilled_soil: TileMapLayer = $TilledSoil
 @onready var farm_plants: TileMapLayer = $FarmPlants
+@onready var tall_farm_plants: TileMapLayer = $TallFarmPlants
 @onready var crop_manager: CropManager = %CropManager
 
 # constants
@@ -20,6 +21,8 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 	# get atlas coords for tile
 	var grass_atlas_coords = grass.get_cell_atlas_coords(ground_cell)
 	var tilled_atlas_coords = tilled_soil.get_cell_atlas_coords(ground_cell)
+	var farm_plant_atlas_coords = farm_plants.get_cell_atlas_coords(ground_cell)
+	var is_cell_occupied_by_crop: bool = farm_plant_atlas_coords.x >= 0 and farm_plant_atlas_coords.y >= 0
 	
 	match tool.action:
 		"TILL":
@@ -27,16 +30,22 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 			# TODO replace with custom data attached to tilesets (could possibly also use custom
 			#      data for planting seeds
 			if grass_atlas_coords == FLAT_GROUND_ATLAS_COORDS or grass_atlas_coords.y >= 5:
-				tilled_soil.set_cells_terrain_connect([ground_cell], GROUND_ATLAS_ID, TILLED_SOIL_ID)
+				if !is_cell_occupied_by_crop:
+					tilled_soil.set_cells_terrain_connect([ground_cell], GROUND_ATLAS_ID, TILLED_SOIL_ID)
 		"PLANT":
 			# should only be able to plant on tilled ground
-			if tilled_atlas_coords.x >= 0 and tilled_atlas_coords.y >= 0:
+			if tilled_atlas_coords.x >= 0 and tilled_atlas_coords.y >= 0 and !is_cell_occupied_by_crop:
 				var seed_atlas_coords = get_seed_atlas_coords(tool)
 				if seed_atlas_coords.x >= 0 and seed_atlas_coords.y >= 0:
 					farm_plants.set_cell(ground_cell, FARM_PLANTS_SOURCE_ID, seed_atlas_coords)
 					crop_manager.add_crop(tool, ground_cell)
 				pass
-	
+		"WATER":
+			# should only be able to water tilled ground
+			if tilled_atlas_coords.x >= 0 and tilled_atlas_coords.y >= 0:
+				# water crop manager
+				crop_manager.water_crop(ground_cell)
+				pass
 	pass
 
 
@@ -85,7 +94,21 @@ func get_seed_atlas_coords(item: Item) -> Vector2i:
 		return Vector2i(0, 1)
 	return Vector2i(-1, -1)
 
+func get_crop_stage_atlas_coords(crop_name: String, crop_stage: int) -> Vector2i:
+	if crop_name == "Corn":
+		return Vector2i(crop_stage - 1, 1)
+	return Vector2i(-1, -1)
 
-func _on_crop_manager_grow_crop() -> void:
-	
-	pass # Replace with function body.
+func _on_crop_manager_grow_crop(crop_name: String, crop_stage: int, crop_cell: Vector2i) -> void:
+	# advance crop at crop_cell to next stage
+	var crop_atlas_coords = get_crop_stage_atlas_coords(crop_name, crop_stage)
+	if crop_atlas_coords.x >= 0 and crop_atlas_coords.y >= 0:
+		farm_plants.set_cell(crop_cell, FARM_PLANTS_SOURCE_ID, crop_atlas_coords)
+		# corn edge case
+		if crop_name == "Corn" and crop_stage >= 4:
+			# if we are at stage 4 or beyond, the corn crop is 2 tiles tall
+			var tile_above_crop = crop_cell
+			tile_above_crop.y -= 1
+			var tall_crop_atlas_coords = crop_atlas_coords
+			tall_crop_atlas_coords.y -= 1
+			tall_farm_plants.set_cell(tile_above_crop, FARM_PLANTS_SOURCE_ID, tall_crop_atlas_coords)

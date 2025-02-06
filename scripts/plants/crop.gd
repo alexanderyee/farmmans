@@ -4,7 +4,7 @@ extends Node
 signal next_stage_reached
 
 @export var crop_name:String
-@export var water_level := 1.0
+@export var water_level := 0.0
 @export var stage_name := "Sapling"
 @export var current_stage := 1
 @export var time_per_stage_s:int
@@ -30,6 +30,9 @@ func is_timer_started() -> bool:
 func get_water_level() -> float:
 	return water_level
 
+func set_water_level(wlevel: float) -> void:
+	water_level = wlevel
+
 func decrement_water_level() -> void:
 	water_level -= 1.0 / 36000 # 10 mins til dehydration for now TODO put this as a global?
 
@@ -42,6 +45,12 @@ func set_dehydrated() -> void:
 func set_extremely_dehydrated() -> void:
 	# crop grows at a quarter of the rate
 	timer.start(timer.time_left * 4)
+
+func get_ground_cell() -> Vector2i:
+	return ground_cell
 	
 func set_ground_cell(cell: Vector2i) -> void:
 	ground_cell = cell
+
+func set_crop_name(name: String) -> void:
+	crop_name = name

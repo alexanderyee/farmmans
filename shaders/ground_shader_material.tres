@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5tugyjo66gwp"]
+
+[ext_resource type="Shader" path="res://shaders/ground.gdshader" id="1_mqdu1"]
+
+[resource]
+shader = ExtResource("1_mqdu1")
+shader_parameter/tile_size = null
+shader_parameter/highlight_pos = null
+shader_parameter/highlight_color = null
+shader_parameter/highlight_intensity = null
+shader_parameter/tool_equipped = null
