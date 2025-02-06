@@ -12,8 +12,12 @@ const LAYER_NAMES := ["GRASS_HILL", "GRASS", "TILLED_SOIL"]
 const GROUND_ATLAS_ID := 0
 const FLAT_GROUND_ATLAS_COORDS := Vector2i(1, 1)
 const GRASS_TERRAIN_ID := 1
-const TILLED_SOIL_ID := 2
+const TILLED_SOIL_TERRAIN_ID := 2
+const TILLED_DIRT_SOURCE_ID := 7
 const FARM_PLANTS_SOURCE_ID := 8
+const WATERED_TILLED_DIRT_SOURCE_ID := 9
+const SEMI_WATERED_TILLED_DIRT_SOURCE_ID := 10
+
 
 func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) -> void:
 	var ground_cell := get_relative_tile_to_player(player_pos, direction)
@@ -31,7 +35,7 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 			#      data for planting seeds
 			if grass_atlas_coords == FLAT_GROUND_ATLAS_COORDS or grass_atlas_coords.y >= 5:
 				if !is_cell_occupied_by_crop:
-					tilled_soil.set_cells_terrain_connect([ground_cell], GROUND_ATLAS_ID, TILLED_SOIL_ID)
+					tilled_soil.set_cells_terrain_connect([ground_cell], GROUND_ATLAS_ID, TILLED_SOIL_TERRAIN_ID)
 		"PLANT":
 			# should only be able to plant on tilled ground
 			if tilled_atlas_coords.x >= 0 and tilled_atlas_coords.y >= 0 and !is_cell_occupied_by_crop:
@@ -45,6 +49,9 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 			if tilled_atlas_coords.x >= 0 and tilled_atlas_coords.y >= 0:
 				# water crop manager
 				crop_manager.water_crop(ground_cell)
+				
+				# set cell to watered version
+				tilled_soil.set_cell(ground_cell, WATERED_TILLED_DIRT_SOURCE_ID, tilled_atlas_coords)
 				pass
 	pass
 
@@ -112,3 +119,11 @@ func _on_crop_manager_grow_crop(crop_name: String, crop_stage: int, crop_cell: V
 			var tall_crop_atlas_coords = crop_atlas_coords
 			tall_crop_atlas_coords.y -= 1
 			tall_farm_plants.set_cell(tile_above_crop, FARM_PLANTS_SOURCE_ID, tall_crop_atlas_coords)
+
+
+func _on_crop_manager_dehydrate_soil(ground_cell: Vector2i, water_level: float) -> void:
+	var tilled_atlas_coords = tilled_soil.get_cell_atlas_coords(ground_cell)
+	if water_level < 0.25:
+		tilled_soil.set_cell(ground_cell, TILLED_DIRT_SOURCE_ID, tilled_atlas_coords)
+	if water_level < 0.5:
+		tilled_soil.set_cell(ground_cell, SEMI_WATERED_TILLED_DIRT_SOURCE_ID, tilled_atlas_coords)

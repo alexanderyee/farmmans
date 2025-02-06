@@ -34,7 +34,7 @@ func set_water_level(wlevel: float) -> void:
 	water_level = wlevel
 
 func decrement_water_level() -> void:
-	water_level -= 1.0 / 36000 # 10 mins til dehydration for now TODO put this as a global?
+	water_level -= 1.0 / 600 # 10 mins til dehydration for now TODO put this as a global?
 
 # Called when crop level is between 25% and 50%
 func set_dehydrated() -> void:

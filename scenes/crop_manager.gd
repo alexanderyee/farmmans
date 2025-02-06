@@ -2,6 +2,7 @@ class_name CropManager
 extends Node
 
 signal grow_crop
+signal dehydrate_soil
 
 var crop_scene = preload("res://scenes/crop.tscn")
 
@@ -22,9 +23,12 @@ func _process(delta: float) -> void:
 			# check water levels to see if we should adjust timer
 			if child.water_level < 0.25:
 				child.set_extremely_dehydrated()
+				# send signal to change tilemap
+				emit_signal("dehydrate_soil", child.get_ground_cell(), child.water_level)
 			if child.water_level < 0.5:
 				child.set_dehydrated()
-				
+				# send signal to change tilemap
+				emit_signal("dehydrate_soil", child.get_ground_cell(), child.water_level)
 
 func add_crop(seed: Item, ground_cell: Vector2i) -> void:
 	var crop_instance: Crop = crop_scene.instantiate()
