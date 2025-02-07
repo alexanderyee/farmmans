@@ -1,7 +1,7 @@
 [gd_scene load_steps=334 format=3 uid="uid://cjyax66vpcugl"]
 
 [ext_resource type="Texture2D" uid="uid://c4og8lal65mpc" path="res://assets/Premium Charakter Spritesheet.png" id="1_id812"]
-[ext_resource type="Script" uid="uid://dp0o33552vf20" path="res://scripts/player.gd" id="1_uwic5"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_uwic5"]
 [ext_resource type="Texture2D" uid="uid://mr1pqbglwdgy" path="res://assets/character_animations/sword-down.png" id="2_mvp0l"]
 [ext_resource type="Texture2D" uid="uid://d2giefpqv5po0" path="res://assets/character_animations/sword-right.png" id="3_3bs36"]
 [ext_resource type="Texture2D" uid="uid://dxjxyos7i8ep5" path="res://assets/character_animations/sword-left.png" id="3_f1rt6"]

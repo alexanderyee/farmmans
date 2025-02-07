@@ -1,3 +1,5 @@
 extends Node
 
-const CROP_STAGES := ["Sapling", "Crossbreeding", "Maturing", "Fruiting", "Ripe", "Dying", "Dead"]
+enum CROP_STAGES {SAPLING, CROSSBREEDING, MATURING, FRUITING, RIPE, DYING, DEAD}
+const DEHYDRATION_STAGE_LENGTH_FACTOR := 2
+const EXTREME_DEHYDRATION_STAGE_LENGTH_FACTOR := 4

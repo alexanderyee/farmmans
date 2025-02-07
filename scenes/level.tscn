@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cx0fw8jjr52x7" path="res://ui/hotbar/hotbar.tscn" id="16_1pid8"]
 [ext_resource type="Resource" uid="uid://h4hogihufbo7" path="res://data/items/sword.tres" id="16_kart4"]
 [ext_resource type="Resource" uid="uid://cgtiv3soknkxd" path="res://data/items/corn_seed.tres" id="20_ig67m"]
-[ext_resource type="Script" uid="uid://dy142a3bj1r2v" path="res://scenes/crop_manager.gd" id="24_t8vni"]
+[ext_resource type="Script" path="res://scenes/crop_manager.gd" id="24_t8vni"]
 [ext_resource type="Resource" uid="uid://dtfkgr1n0eork" path="res://data/items/watering_can.tres" id="25_fugfo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd3cu"]
@@ -1456,6 +1456,7 @@ size_flags_vertical = 0
 color = Color(0.607843, 0.831373, 0.764706, 1)
 
 [node name="ground" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_jraoe")
 
 [node name="Grass" type="TileMapLayer" parent="ground"]
@@ -1557,5 +1558,6 @@ item = ExtResource("25_fugfo")
 [connection signal="inventory_change" from="Player" to="UIRoot/InventoryDialog" method="_on_player_inventory_change"]
 [connection signal="inventory_change" from="Player" to="UIRoot/Hotbar" method="_on_player_inventory_change"]
 [connection signal="tool_usage" from="Player" to="ground" method="_on_player_tool_usage"]
+[connection signal="cell_state_updated" from="ground" to="CropManager" method="_on_ground_cell_state_updated"]
 [connection signal="dehydrate_soil" from="CropManager" to="ground" method="_on_crop_manager_dehydrate_soil"]
 [connection signal="grow_crop" from="CropManager" to="ground" method="_on_crop_manager_grow_crop"]
