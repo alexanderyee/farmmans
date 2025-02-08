@@ -16,6 +16,7 @@ signal highlight_tile_tool
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
 @onready var anim_tree: AnimationTree = $AnimationTree
+@onready var ground: Node2D = %ground
 
 var equipped_slot: int
 var face_direction := "down"
@@ -29,6 +30,8 @@ func _ready():
 	direction_regex = RegEx.new()
 	direction_regex.compile("^[^\\_]*\\_?(.*)$")
 
+	
+	
 func _physics_process(_delta):
 	var tool_equipped := false
 	var weapon_equipped := false
@@ -39,20 +42,27 @@ func _physics_process(_delta):
 			tool_equipped = true
 		elif equipped_item.type == "WEAPON":
 			weapon_equipped = true
+	var cell_to_highlight = get_cell_to_highlight()
+	
 	
 	# highlight tile towards direction of mouse
-	emit_signal("highlight_tile_tool", position, mouse_direction, tool_equipped)
+	emit_signal("highlight_tile_tool", cell_to_highlight, tool_equipped)
 	
 	# check for primary action (left-click)
 	if Input.is_action_just_pressed("primary") and !in_action:
 		var relative_mouse_direction_2d: Vector2 = get_relative_mouse_direction_2d()
 		face_direction = direction_to_cardinal(relative_mouse_direction_2d)
 		if tool_equipped:
+			var clicked_cell = get_mouse_tilemaplayer_cell()
 			# aim towards mouse cursor diagonal
 			perform_tool_action(equipped_item, mouse_direction)
 		if weapon_equipped:
 			perform_weapon_action(equipped_item, face_direction)
 			
+	# check for secondary action (right-click)
+	if Input.is_action_just_pressed("secondary") and !in_action:
+		# get cell mouse is in, check if crop exists, check if harvestable, harvest
+		pass
 	# handle movement
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = raw_input * int(speed * (sprint_speed_mult if Input.is_action_pressed("sprint") else 1.0))
@@ -96,6 +106,7 @@ func _physics_process(_delta):
 			equipped_slot = i - 1
 			Inventory.set_equipped_slot(equipped_slot)
 			emit_signal("inventory_change")
+	
 
 func change_direction_marker(new_direction:String):
 	if new_direction == "down":
@@ -183,3 +194,18 @@ func deal_damage(damage: int, hitstun_frames: int, knockback: int, area: Area2D)
 
 func get_relative_mouse_direction_2d() -> Vector2:
 	return get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
+
+func get_mouse_tilemaplayer_cell() -> Vector2i:
+	var mouse_cell = ground.get_tile_from_pos(get_viewport().get_mouse_position())
+	return mouse_cell
+	
+func get_cell_to_highlight() -> Vector2i:
+	var player_to_mouse_vec = get_global_mouse_position() - global_position
+	player_to_mouse_vec = player_to_mouse_vec.limit_length(Global.TILE_SIZE * 1.5)
+	
+	var pos_to_highlight = global_position + player_to_mouse_vec
+	var cell_to_highlight = ground.get_tile_from_pos(pos_to_highlight)
+	return cell_to_highlight
+	
+	
+	

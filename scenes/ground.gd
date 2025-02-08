@@ -81,19 +81,20 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 	pass
 
 
-func _on_player_highlight_tile_tool(player_pos:Vector2, direction: String, tool_equipped: bool) -> void:
-	var ground_cell := get_relative_tile_to_player(player_pos, direction)
+func _on_player_highlight_tile_tool(cell_to_highlight:Vector2i, tool_equipped: bool) -> void:
 	
 	# params for shader code
-	var tile_size = Vector2(16, 16)
+	var tile_size = Vector2(Global.TILE_SIZE, Global.TILE_SIZE)
 	var highlight_color = Vector4(1.0, 1.0, 1.0, 1.0)
-	var map_local = grass.map_to_local(ground_cell)
+	var map_local = grass.map_to_local(cell_to_highlight)
 	grass.material.set_shader_parameter("tile_size", tile_size)
-	grass.material.set_shader_parameter("highlight_pos", Vector2(ground_cell))
+	grass.material.set_shader_parameter("highlight_pos", Vector2(cell_to_highlight))
 	grass.material.set_shader_parameter("highlight_color", highlight_color)
 	grass.material.set_shader_parameter("highlight_intensity", 0.2)
 	grass.material.set_shader_parameter("tool_equipped", tool_equipped)
 
+func get_tile_from_pos(pos: Vector2):
+	return grass.local_to_map(pos)
 
 func get_relative_tile_to_player(player_pos:Vector2, direction: String) -> Vector2i:
 	var cell : Vector2i = (grass.local_to_map(player_pos))
