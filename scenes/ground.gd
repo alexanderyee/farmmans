@@ -43,9 +43,7 @@ func _process(delta: float) -> void:
 			tilled_soil.set_cell(ground_cell, SEMI_WATERED_TILLED_DIRT_SOURCE_ID, tilled_atlas_coords)
 			emit_signal("cell_state_updated", ground_cell, current_water_level)
 		
-func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) -> void:
-	var ground_cell := get_relative_tile_to_player(player_pos, direction)
-	
+func _on_player_tool_usage(tool: Item, player_pos: Vector2, ground_cell: Vector2i) -> void:
 	# get atlas coords for tile
 	var grass_atlas_coords = grass.get_cell_atlas_coords(ground_cell)
 	var tilled_atlas_coords = tilled_soil.get_cell_atlas_coords(ground_cell)
@@ -82,7 +80,6 @@ func _on_player_tool_usage(tool: Item, player_pos:Vector2, direction: String) ->
 
 
 func _on_player_highlight_tile_tool(cell_to_highlight:Vector2i, tool_equipped: bool) -> void:
-	
 	# params for shader code
 	var tile_size = Vector2(Global.TILE_SIZE, Global.TILE_SIZE)
 	var highlight_color = Vector4(1.0, 1.0, 1.0, 1.0)
@@ -95,32 +92,6 @@ func _on_player_highlight_tile_tool(cell_to_highlight:Vector2i, tool_equipped: b
 
 func get_tile_from_pos(pos: Vector2):
 	return grass.local_to_map(pos)
-
-func get_relative_tile_to_player(player_pos:Vector2, direction: String) -> Vector2i:
-	var cell : Vector2i = (grass.local_to_map(player_pos))
-	match direction:
-		# TODO maybe just split into ternarys left/right up/down?
-		"right":
-			cell.x += 1
-		"down_right":
-			cell.x += 1
-			cell.y += 1
-		"down":
-			cell.y += 1
-		"down_left":
-			cell.x -= 1
-			cell.y += 1
-		"left":
-			cell.x -= 1
-		"up_left":
-			cell.x -= 1
-			cell.y -= 1
-		"up":
-			cell.y -= 1
-		"up_right":
-			cell.y -= 1
-			cell.x += 1
-	return cell
 
 func get_seed_atlas_coords(item: Item) -> Vector2i:
 	if item.name == "Corn Seed":

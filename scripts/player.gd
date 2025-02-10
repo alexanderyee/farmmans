@@ -53,9 +53,9 @@ func _physics_process(_delta):
 		var relative_mouse_direction_2d: Vector2 = get_relative_mouse_direction_2d()
 		face_direction = direction_to_cardinal(relative_mouse_direction_2d)
 		if tool_equipped:
-			var clicked_cell = get_mouse_tilemaplayer_cell()
+			var clicked_cell = get_cell_to_highlight()
 			# aim towards mouse cursor diagonal
-			perform_tool_action(equipped_item, mouse_direction)
+			perform_tool_action(equipped_item, clicked_cell)
 		if weapon_equipped:
 			perform_weapon_action(equipped_item, face_direction)
 			
@@ -147,14 +147,14 @@ func get_relative_mouse_diagonal() -> String:
 		return "up_right"
 	return ""
 
-func perform_tool_action(tool: Item, action_direction: String) -> void:
+func perform_tool_action(tool: Item, clicked_cell: Vector2i) -> void:
 	var relative_mouse_direction_2d = get_relative_mouse_direction_2d()
 	set_anim_tree_blend_position(relative_mouse_direction_2d, true)
 	if tool.animation_name in action_anim_names:
 		anim_tree.get("parameters/playback").travel(tool.animation_name)
 		in_action = true
 	# set tile according to item's action
-	emit_signal("tool_usage", tool, position, action_direction)
+	emit_signal("tool_usage", tool, position, clicked_cell)
 	return
 	
 func perform_weapon_action(weapon: Item, action_direction: String) -> void:
@@ -195,10 +195,6 @@ func deal_damage(damage: int, hitstun_frames: int, knockback: int, area: Area2D)
 func get_relative_mouse_direction_2d() -> Vector2:
 	return get_viewport().get_mouse_position() - get_global_transform_with_canvas().origin
 
-func get_mouse_tilemaplayer_cell() -> Vector2i:
-	var mouse_cell = ground.get_tile_from_pos(get_viewport().get_mouse_position())
-	return mouse_cell
-	
 func get_cell_to_highlight() -> Vector2i:
 	var player_to_mouse_vec = get_global_mouse_position() - global_position
 	player_to_mouse_vec = player_to_mouse_vec.limit_length(Global.TILE_SIZE * 1.5)
