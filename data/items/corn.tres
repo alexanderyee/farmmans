@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c0osncojlyqi8"]
+
+[ext_resource type="Texture2D" uid="uid://b8k86wnwh6mlv" path="res://assets/items/corn_icon.png" id="1_edme8"]
+[ext_resource type="PackedScene" uid="uid://cjiidnsayvxk4" path="res://scenes/items/corn.tscn" id="2_qis7f"]
+[ext_resource type="Script" uid="uid://dhcvh3gqej8d8" path="res://scripts/item.gd" id="3_365lq"]
+
+[resource]
+script = ExtResource("3_365lq")
+name = "Corn Seed"
+scene = ExtResource("2_qis7f")
+icon = ExtResource("1_edme8")
+price = 5
+animation_name = ""
+is_equippable = false
+type = "RESOURCE"
+action = ""

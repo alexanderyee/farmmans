@@ -3,7 +3,8 @@ extends CharacterBody2D
 # Constants
 const action_anim_names := ["Hoe", "Hatchet", "Sword", "Water"] # TODO map these to resourcetable
 const movement_anim_names := ["Idle", "Run", "Walk"]
-
+const PICKUP = preload("res://scenes/pickup.tscn")
+const ITEM_RES_PATH = "res://data/items/"
 # Signals
 signal inventory_change # TODO is this still needed? maybe call refresh instead
 signal tool_usage
@@ -29,8 +30,6 @@ var sword_timescale_frame_counter := 0
 func _ready():
 	direction_regex = RegEx.new()
 	direction_regex.compile("^[^\\_]*\\_?(.*)$")
-
-	
 	
 func _physics_process(_delta):
 	var tool_equipped := false
@@ -61,8 +60,22 @@ func _physics_process(_delta):
 			
 	# check for secondary action (right-click)
 	if Input.is_action_just_pressed("secondary") and !in_action:
-		# get cell mouse is in, check if crop exists, check if harvestable, harvest
-		pass
+		# get cell mouse is in
+		var clicked_cell = get_cell_to_highlight()
+		
+		# check if crop exists and harvestable
+		var harvested_crop_name: String = ground.harvest_crop(clicked_cell)
+		if !harvested_crop_name.is_empty():
+			# spawn pickuppable crop item
+			var obtainable_item: Obtainable = PICKUP.instantiate()
+			var item_resource: Item = get_item_resource(harvested_crop_name.to_snake_case())
+			if item_resource:
+				obtainable_item.item = item_resource
+			
+			# set location to be on crop cell
+			obtainable_item.global_position = ground.get_global_position_of_cell(clicked_cell)
+			
+			add_sibling(obtainable_item)
 	# handle movement
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = raw_input * int(speed * (sprint_speed_mult if Input.is_action_pressed("sprint") else 1.0))
@@ -203,5 +216,9 @@ func get_cell_to_highlight() -> Vector2i:
 	var cell_to_highlight = ground.get_tile_from_pos(pos_to_highlight)
 	return cell_to_highlight
 	
-	
-	
+func get_item_resource(item_name: String) -> Item:
+	var path := ITEM_RES_PATH + item_name + ".tres"
+	if ResourceLoader.exists(path):
+		var item: Item = ResourceLoader.load(path)
+		return item
+	return null

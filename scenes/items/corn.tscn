@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjiidnsayvxk4"]
+
+[ext_resource type="Texture2D" uid="uid://b8k86wnwh6mlv" path="res://assets/items/corn_icon.png" id="1_4s6r7"]
+
+[node name="CornIcon" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_4s6r7")
+region_rect = Rect2(16, 16, 16, 16)

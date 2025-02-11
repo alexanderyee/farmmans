@@ -1,3 +1,4 @@
+class_name Obtainable
 extends Node2D
 
 @export var item:Item

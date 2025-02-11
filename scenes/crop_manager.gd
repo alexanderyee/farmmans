@@ -45,6 +45,13 @@ func get_crop_at_ground_cell(ground_cell: Vector2i) -> Crop:
 			return child
 	return null
 
+func remove_crop_at_cell(ground_cell: Vector2i) -> bool:
+	for child: Crop in get_children():
+		if child.ground_cell == ground_cell:
+			child.queue_free()
+			return true
+	return false
+
 func _on_ground_cell_state_updated(ground_cell: Vector2i, water_level: float) -> void:
 	var crop: Crop = get_crop_at_ground_cell(ground_cell)
 	if crop:

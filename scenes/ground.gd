@@ -116,6 +116,32 @@ func _on_crop_manager_grow_crop(crop_name: String, crop_stage: int, crop_cell: V
 			var tall_crop_atlas_coords = crop_atlas_coords
 			tall_crop_atlas_coords.y -= 1
 			tall_farm_plants.set_cell(tile_above_crop, FARM_PLANTS_SOURCE_ID, tall_crop_atlas_coords)
+			
 
 func get_water_level(ground_cell: Vector2i) -> float:
 	return water_levels[ground_cell]
+
+# returns crop name if a harvestable crop is found at cell ground_cell, else empty string
+func harvest_crop(ground_cell: Vector2i) -> String:
+	var crop: Crop = crop_manager.get_crop_at_ground_cell(ground_cell)
+	if crop and crop.is_harvestable:
+		# reset tilemap to tilled ground
+		farm_plants.erase_cell(ground_cell)
+		
+		# corn edge case
+		if crop.crop_name == "Corn" and crop.current_stage >= 4:
+			var tile_above_crop = ground_cell
+			tile_above_crop.y -= 1
+			tall_farm_plants.erase_cell(tile_above_crop)
+			
+		# remove crop in crop_manager
+		var is_crop_removed: bool = crop_manager.remove_crop_at_cell(ground_cell)
+		if is_crop_removed:
+			return crop.crop_name
+		else: 
+			push_error("crop_manager wasn't able to delete a crop!")
+			return ""
+	return ""
+
+func get_global_position_of_cell(ground_cell: Vector2i) -> Vector2:
+	return to_global(tilled_soil.map_to_local(ground_cell))
