@@ -17,7 +17,7 @@ signal highlight_tile_tool
 @onready var interact_area: Area2D = $Direction/interact_area
 @onready var direction: Marker2D = $Direction
 @onready var anim_tree: AnimationTree = $AnimationTree
-@onready var ground: Node2D = %ground
+@onready var ground: Ground = %ground
 
 var equipped_slot: int
 var face_direction := "down"

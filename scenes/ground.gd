@@ -1,3 +1,4 @@
+class_name Ground
 extends Node2D
 
 # Signals
