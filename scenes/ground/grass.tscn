@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr3sc2qa4xndp"]
+
+[ext_resource type="Script" path="res://scenes/ground/grass.gd" id="1_hca2e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_idg53"]
+
+[node name="Grass" type="Node2D"]
+script = ExtResource("1_hca2e")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_idg53")
