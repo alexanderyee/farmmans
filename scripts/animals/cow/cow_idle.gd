@@ -8,9 +8,19 @@ var move_direction: Vector2
 var wander_time: float
 
 func randomize_wander():
-	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_time = randf_range(1, 3)
-	
+	# 50/50 chance the cow will stay still
+	var should_move := randi() % 2 == 0
+	if should_move:
+		move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+		wander_time = randf_range(1, 3)
+	else:
+		# another 50/50 for whether the cow should sit
+		var should_sit := randi() % 2 == 0
+		if should_sit:
+			transitioned.emit(self, "Sit")
+		move_direction = Vector2.ZERO
+		wander_time = randf_range(1, 3)
+		
 func enter():
 	randomize_wander()
 	
@@ -25,4 +35,10 @@ func update(delta: float):
 		
 func physics_update(delta: float):
 	if cow:
-		cow.velocity = move_direction * move_speed
+		# TODO this serves as a quick fix rather than adding too many States,
+		#      both in the animation_tree and StateMachine
+
+		if cow.get_current_playing_anim() == "stand":
+			cow.velocity = Vector2.ZERO
+		else:
+			cow.velocity = move_direction * move_speed

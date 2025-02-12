@@ -1,15 +1,18 @@
 class_name Cow
 extends CharacterBody2D
 
-@onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _grass_detection_area: Area2D = $GrassDetectionArea
 @onready var _sprite: Sprite2D = $Sprite2D
+@onready var anim_tree: AnimationTree = $AnimationTree
+@onready var state_machine: AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
 
 var should_randomly_move := false
 var hunger := 0.0:
 	set = set_hunger
 var is_eating := false:
 	set = set_is_eating
+var is_sitting := false:
+	set = set_is_sitting
 var rng := RandomNumberGenerator.new()
 var facing_right := true # by default the sprite/animations are facing right
 var grass_in_sight := []
@@ -23,12 +26,6 @@ func _process(delta: float) -> void:
 		hunger -= delta * 20.0
 
 func _physics_process(delta: float) -> void:
-	if velocity.length() > 0:
-		_animation_player.play("walk")
-	elif is_eating:
-		_animation_player.play("eat")
-	else:
-		_animation_player.play("stand_idle")
 	if velocity.x > 0:
 		facing_right = true
 	elif velocity.x < 0:
@@ -47,7 +44,7 @@ func _on_grass_detection_area_area_exited(area: Area2D) -> void:
 	
 func is_hungry() -> bool:
 	return hunger <= 0.0
-	
+	 
 func is_grass_in_sight() -> bool:
 	return !grass_in_sight.is_empty()
 
@@ -65,3 +62,9 @@ func set_is_eating(b: bool) -> void:
 
 func set_hunger(hunger_level: float) -> void:
 	hunger = hunger_level
+
+func set_is_sitting(b: bool) -> void:
+	is_sitting = b
+	
+func get_current_playing_anim() -> String:
+	return state_machine.get_current_node()

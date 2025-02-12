@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmeef3smhdmgn"]
+[gd_scene load_steps=41 format=3 uid="uid://dmeef3smhdmgn"]
 
 [ext_resource type="Script" path="res://scripts/animals/cow/cow.gd" id="1_fby56"]
 [ext_resource type="Texture2D" uid="uid://dy33fweks53qj" path="res://assets/animals/cow/Light cow animations.png" id="1_gl6qa"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_03b7r"]
 [ext_resource type="Script" path="res://scripts/animals/cow/cow_idle.gd" id="4_icwie"]
 [ext_resource type="Script" path="res://scripts/animals/cow/cow_eat.gd" id="5_na8q1"]
+[ext_resource type="Script" path="res://scripts/animals/cow/cow_sit.gd" id="6_kiwej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvr"]
 size = Vector2(32, 19)
@@ -196,6 +197,101 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw0wy"]
 radius = 150.03
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h34et"]
+animation = &"eat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wl25x"]
+animation = &"sit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bfyhy"]
+animation = &"sit_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbtve"]
+animation = &"stand"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6u55"]
+animation = &"stand_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jq4g5"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8xkfa"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6j02k"]
+advance_mode = 2
+advance_expression = "is_eating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m21ol"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m4r4e"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5xexp"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ev51a"]
+advance_mode = 2
+advance_expression = "!is_eating && !velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6euvb"]
+advance_mode = 2
+advance_expression = "!is_eating && velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jsl0q"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6aw2"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "is_eating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tboc8"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hp3ye"]
+advance_mode = 2
+advance_expression = "is_sitting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1u80w"]
+advance_mode = 2
+advance_expression = "is_sitting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o6j4g"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cvvpk"]
+advance_mode = 2
+advance_expression = "!is_sitting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6jeh2"]
+states/End/position = Vector2(969, 102)
+states/Start/position = Vector2(-29, 158)
+states/eat/node = SubResource("AnimationNodeAnimation_h34et")
+states/eat/position = Vector2(949, 246)
+states/sit/node = SubResource("AnimationNodeAnimation_wl25x")
+states/sit/position = Vector2(800, 459)
+states/sit_idle/node = SubResource("AnimationNodeAnimation_bfyhy")
+states/sit_idle/position = Vector2(1107, 414)
+states/stand/node = SubResource("AnimationNodeAnimation_tbtve")
+states/stand/position = Vector2(554, 340)
+states/stand_idle/node = SubResource("AnimationNodeAnimation_i6u55")
+states/stand_idle/position = Vector2(476, 555)
+states/walk/node = SubResource("AnimationNodeAnimation_jq4g5")
+states/walk/position = Vector2(312, 191)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_8xkfa"), "walk", "eat", SubResource("AnimationNodeStateMachineTransition_6j02k"), "Start", "stand_idle", SubResource("AnimationNodeStateMachineTransition_m21ol"), "stand", "stand_idle", SubResource("AnimationNodeStateMachineTransition_m4r4e"), "stand_idle", "walk", SubResource("AnimationNodeStateMachineTransition_5xexp"), "eat", "stand_idle", SubResource("AnimationNodeStateMachineTransition_ev51a"), "eat", "walk", SubResource("AnimationNodeStateMachineTransition_6euvb"), "stand", "walk", SubResource("AnimationNodeStateMachineTransition_jsl0q"), "stand", "eat", SubResource("AnimationNodeStateMachineTransition_t6aw2"), "walk", "stand_idle", SubResource("AnimationNodeStateMachineTransition_tboc8"), "stand_idle", "sit", SubResource("AnimationNodeStateMachineTransition_hp3ye"), "walk", "sit", SubResource("AnimationNodeStateMachineTransition_1u80w"), "sit", "sit_idle", SubResource("AnimationNodeStateMachineTransition_o6j4g"), "sit_idle", "stand", SubResource("AnimationNodeStateMachineTransition_cvvpk")]
+graph_offset = Vector2(-209, 136)
+
 [node name="Cow" type="CharacterBody2D"]
 script = ExtResource("1_fby56")
 
@@ -219,6 +315,7 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrassDetectionArea"]
 shape = SubResource("CircleShape2D_bw0wy")
+debug_color = Color(0.780392, 0.435294, 0, 0.0352941)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_03b7r")
@@ -231,6 +328,15 @@ cow = NodePath("../..")
 [node name="Eat" type="Node" parent="StateMachine" node_paths=PackedStringArray("cow")]
 script = ExtResource("5_na8q1")
 cow = NodePath("../..")
+
+[node name="Sit" type="Node" parent="StateMachine" node_paths=PackedStringArray("cow")]
+script = ExtResource("6_kiwej")
+cow = NodePath("../..")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_6jeh2")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="area_entered" from="GrassDetectionArea" to="." method="_on_grass_detection_area_area_entered"]
 [connection signal="area_exited" from="GrassDetectionArea" to="." method="_on_grass_detection_area_area_exited"]
