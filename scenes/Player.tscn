@@ -3232,6 +3232,7 @@ shape = SubResource("RectangleShape2D_hjlbj")
 
 [node name="interact_area" type="Area2D" parent="Direction"]
 scale = Vector2(0.8, 0.8)
+collision_mask = 65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/interact_area"]
 position = Vector2(0, 13)

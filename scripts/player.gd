@@ -4,7 +4,7 @@ extends CharacterBody2D
 const action_anim_names := ["Hoe", "Hatchet", "Sword", "Water"] # TODO map these to resourcetable
 const movement_anim_names := ["Idle", "Run", "Walk"]
 const PICKUP = preload("res://scenes/pickup.tscn")
-const ITEM_RES_PATH = "res://data/items/"
+
 # Signals
 signal inventory_change # TODO is this still needed? maybe call refresh instead
 signal tool_usage
@@ -43,7 +43,6 @@ func _physics_process(_delta):
 			weapon_equipped = true
 	var cell_to_highlight = get_cell_to_highlight()
 	
-	
 	# highlight tile towards direction of mouse
 	emit_signal("highlight_tile_tool", cell_to_highlight, tool_equipped)
 	
@@ -68,7 +67,7 @@ func _physics_process(_delta):
 		if !harvested_crop_name.is_empty():
 			# spawn pickuppable crop item
 			var obtainable_item: Obtainable = PICKUP.instantiate()
-			var item_resource: Item = get_item_resource(harvested_crop_name.to_snake_case())
+			var item_resource: Item = Global.get_item_resource(harvested_crop_name)
 			if item_resource:
 				obtainable_item.item = item_resource
 			
@@ -76,6 +75,9 @@ func _physics_process(_delta):
 			obtainable_item.global_position = ground.get_global_position_of_cell(clicked_cell)
 			
 			add_sibling(obtainable_item)
+		
+		# check if a cow needs to be milked (2nd method, right click)
+		
 	# handle movement
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = raw_input * int(speed * (sprint_speed_mult if Input.is_action_pressed("sprint") else 1.0))
@@ -111,6 +113,10 @@ func _physics_process(_delta):
 		for area in interact_area.get_overlapping_areas():
 			if area.is_in_group("door"):
 				area.toggle_door()
+		# check if a cow needs to be milked (1st method, interact)
+		for body in interact_area.get_overlapping_bodies():
+			if body is Cow:
+				body.milk()
 	
 	# check hotbar item switch 
 	# TODO would it be better practice to let Inventory or Hotbar handle this input listening?
@@ -216,9 +222,3 @@ func get_cell_to_highlight() -> Vector2i:
 	var cell_to_highlight = ground.get_tile_from_pos(pos_to_highlight)
 	return cell_to_highlight
 	
-func get_item_resource(item_name: String) -> Item:
-	var path := ITEM_RES_PATH + item_name + ".tres"
-	if ResourceLoader.exists(path):
-		var item: Item = ResourceLoader.load(path)
-		return item
-	return null

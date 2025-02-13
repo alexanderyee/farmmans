@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://jhfloxr6rgsb"]
+
+[ext_resource type="Texture2D" uid="uid://dvvajfi4bixo1" path="res://assets/items/basic_milk.png" id="1_2h2x3"]
+[ext_resource type="Script" uid="uid://dhcvh3gqej8d8" path="res://scripts/item.gd" id="1_h3vr5"]
+[ext_resource type="PackedScene" uid="uid://b3tewivmd3jbw" path="res://scenes/items/basic_milk.tscn" id="2_0sduv"]
+
+[resource]
+script = ExtResource("1_h3vr5")
+name = "Basic Milk"
+scene = ExtResource("2_0sduv")
+icon = ExtResource("1_2h2x3")
+price = 5
+animation_name = ""
+is_equippable = false
+type = "RESOURCE"
+action = ""

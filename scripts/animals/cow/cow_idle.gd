@@ -38,7 +38,7 @@ func physics_update(delta: float):
 		# TODO this serves as a quick fix rather than adding too many States,
 		#      both in the animation_tree and StateMachine
 
-		if cow.get_current_playing_anim() == "stand":
+		if cow.get_current_playing_anim() == "stand" or cow.is_being_milked:
 			cow.velocity = Vector2.ZERO
 		else:
 			cow.velocity = move_direction * move_speed

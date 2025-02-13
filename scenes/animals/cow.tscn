@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dmeef3smhdmgn"]
+[gd_scene load_steps=47 format=3 uid="uid://dmeef3smhdmgn"]
 
 [ext_resource type="Script" path="res://scripts/animals/cow/cow.gd" id="1_fby56"]
 [ext_resource type="Texture2D" uid="uid://dy33fweks53qj" path="res://assets/animals/cow/Light cow animations.png" id="1_gl6qa"]
@@ -45,7 +45,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_s12b6"]
 resource_name = "love"
-length = 0.6
+length = 1.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -54,7 +54,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [56, 57, 58, 59, 60, 61]
@@ -200,6 +200,9 @@ radius = 150.03
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h34et"]
 animation = &"eat"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dv5tr"]
+animation = &"love"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wl25x"]
 animation = &"sit"
 
@@ -274,25 +277,48 @@ advance_mode = 2
 advance_mode = 2
 advance_expression = "!is_sitting"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kwwdo"]
+advance_mode = 2
+advance_expression = "is_being_milked"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dov8i"]
+advance_mode = 2
+advance_expression = "is_being_milked"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w01mj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldbt4"]
+advance_mode = 2
+advance_expression = "is_eating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_332y1"]
+advance_mode = 2
+advance_expression = "is_being_milked"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6jeh2"]
 states/End/position = Vector2(969, 102)
 states/Start/position = Vector2(-29, 158)
 states/eat/node = SubResource("AnimationNodeAnimation_h34et")
-states/eat/position = Vector2(949, 246)
+states/eat/position = Vector2(745, 64)
+states/love/node = SubResource("AnimationNodeAnimation_dv5tr")
+states/love/position = Vector2(997, 589)
 states/sit/node = SubResource("AnimationNodeAnimation_wl25x")
-states/sit/position = Vector2(800, 459)
+states/sit/position = Vector2(538, 234)
 states/sit_idle/node = SubResource("AnimationNodeAnimation_bfyhy")
-states/sit_idle/position = Vector2(1107, 414)
+states/sit_idle/position = Vector2(991, 234)
 states/stand/node = SubResource("AnimationNodeAnimation_tbtve")
-states/stand/position = Vector2(554, 340)
+states/stand/position = Vector2(611, 487)
 states/stand_idle/node = SubResource("AnimationNodeAnimation_i6u55")
-states/stand_idle/position = Vector2(476, 555)
+states/stand_idle/position = Vector2(309, 627)
 states/walk/node = SubResource("AnimationNodeAnimation_jq4g5")
-states/walk/position = Vector2(312, 191)
-transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_8xkfa"), "walk", "eat", SubResource("AnimationNodeStateMachineTransition_6j02k"), "Start", "stand_idle", SubResource("AnimationNodeStateMachineTransition_m21ol"), "stand", "stand_idle", SubResource("AnimationNodeStateMachineTransition_m4r4e"), "stand_idle", "walk", SubResource("AnimationNodeStateMachineTransition_5xexp"), "eat", "stand_idle", SubResource("AnimationNodeStateMachineTransition_ev51a"), "eat", "walk", SubResource("AnimationNodeStateMachineTransition_6euvb"), "stand", "walk", SubResource("AnimationNodeStateMachineTransition_jsl0q"), "stand", "eat", SubResource("AnimationNodeStateMachineTransition_t6aw2"), "walk", "stand_idle", SubResource("AnimationNodeStateMachineTransition_tboc8"), "stand_idle", "sit", SubResource("AnimationNodeStateMachineTransition_hp3ye"), "walk", "sit", SubResource("AnimationNodeStateMachineTransition_1u80w"), "sit", "sit_idle", SubResource("AnimationNodeStateMachineTransition_o6j4g"), "sit_idle", "stand", SubResource("AnimationNodeStateMachineTransition_cvvpk")]
-graph_offset = Vector2(-209, 136)
+states/walk/position = Vector2(319, 158)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_8xkfa"), "walk", "eat", SubResource("AnimationNodeStateMachineTransition_6j02k"), "Start", "stand_idle", SubResource("AnimationNodeStateMachineTransition_m21ol"), "stand", "stand_idle", SubResource("AnimationNodeStateMachineTransition_m4r4e"), "stand_idle", "walk", SubResource("AnimationNodeStateMachineTransition_5xexp"), "eat", "stand_idle", SubResource("AnimationNodeStateMachineTransition_ev51a"), "eat", "walk", SubResource("AnimationNodeStateMachineTransition_6euvb"), "stand", "walk", SubResource("AnimationNodeStateMachineTransition_jsl0q"), "stand", "eat", SubResource("AnimationNodeStateMachineTransition_t6aw2"), "walk", "stand_idle", SubResource("AnimationNodeStateMachineTransition_tboc8"), "stand_idle", "sit", SubResource("AnimationNodeStateMachineTransition_hp3ye"), "walk", "sit", SubResource("AnimationNodeStateMachineTransition_1u80w"), "sit", "sit_idle", SubResource("AnimationNodeStateMachineTransition_o6j4g"), "sit_idle", "stand", SubResource("AnimationNodeStateMachineTransition_cvvpk"), "sit_idle", "love", SubResource("AnimationNodeStateMachineTransition_kwwdo"), "stand_idle", "love", SubResource("AnimationNodeStateMachineTransition_dov8i"), "love", "stand_idle", SubResource("AnimationNodeStateMachineTransition_w01mj"), "stand_idle", "eat", SubResource("AnimationNodeStateMachineTransition_ldbt4"), "walk", "love", SubResource("AnimationNodeStateMachineTransition_332y1")]
+graph_offset = Vector2(-93, 95)
 
 [node name="Cow" type="CharacterBody2D"]
+collision_layer = 65
 script = ExtResource("1_fby56")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -340,3 +366,4 @@ anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="area_entered" from="GrassDetectionArea" to="." method="_on_grass_detection_area_area_entered"]
 [connection signal="area_exited" from="GrassDetectionArea" to="." method="_on_grass_detection_area_area_exited"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
