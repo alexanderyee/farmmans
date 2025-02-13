@@ -22,4 +22,3 @@ func take_damage(damage: int, hitstun_frames: int, knockback: int, pos_hit_from:
 	health_component.subtract_health(damage)
 	if get_parent().has_method("take_hitstun"):
 		get_parent().take_hitstun(hitstun_frames, knockback, pos_hit_from)
-	print("ow from: " + str(get_parent()) + ", at " + str(health_component.get_health()) + " health")
