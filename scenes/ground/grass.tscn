@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cr3sc2qa4xndp"]
 
-[ext_resource type="Script" path="res://scenes/ground/grass.gd" id="1_hca2e"]
+[ext_resource type="Script" uid="uid://cx6blnm3jfwj1" path="res://scenes/ground/grass.gd" id="1_hca2e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_idg53"]
 

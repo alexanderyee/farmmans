@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0ehnoptupjln"]
 
-[ext_resource type="Script" path="res://ui/inventory_dialog/inventory_dialog.gd" id="1_6b6qn"]
+[ext_resource type="Script" uid="uid://gara1ujwhhy4" path="res://ui/inventory_dialog/inventory_dialog.gd" id="1_6b6qn"]
 [ext_resource type="PackedScene" uid="uid://b4rugsmb0phj4" path="res://ui/item_grid/item_grid.tscn" id="3_an1tw"]
 
 [node name="InventoryDialog" type="PanelContainer"]

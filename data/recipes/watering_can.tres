@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=5 format=3 uid="uid://epq8cy7i7y0"]
 
-[ext_resource type="Script" path="res://scripts/item.gd" id="1_j3bc6"]
+[ext_resource type="Script" uid="uid://doo5wmbtap62d" path="res://scripts/item.gd" id="1_j3bc6"]
 [ext_resource type="Resource" uid="uid://dtfkgr1n0eork" path="res://data/items/watering_can.tres" id="3_kvl8n"]
 [ext_resource type="Resource" uid="uid://dam8t28v4vaxh" path="res://data/items/iron_ingot.tres" id="3_vau8h"]
-[ext_resource type="Script" path="res://scripts/recipe.gd" id="4_u4mwq"]
+[ext_resource type="Script" uid="uid://cpjw88o3nwieb" path="res://scripts/recipe.gd" id="4_u4mwq"]
 
 [resource]
 script = ExtResource("4_u4mwq")

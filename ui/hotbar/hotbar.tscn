@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx0fw8jjr52x7"]
 
-[ext_resource type="Script" path="res://ui/item_grid/item_grid.gd" id="1_bpdh7"]
-[ext_resource type="Script" path="res://ui/hotbar/hotbar.gd" id="1_g7y16"]
+[ext_resource type="Script" uid="uid://cf0clfitepxrs" path="res://ui/item_grid/item_grid.gd" id="1_bpdh7"]
+[ext_resource type="Script" uid="uid://wy7ukvrdqgm6" path="res://ui/hotbar/hotbar.gd" id="1_g7y16"]
 [ext_resource type="PackedScene" uid="uid://dee5evva1yvns" path="res://scenes/item_slot.tscn" id="2_47rar"]
 
 [node name="Hotbar" type="PanelContainer"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dee5evva1yvns"]
 
-[ext_resource type="Script" path="res://scripts/item_slot.gd" id="1_pbkix"]
-[ext_resource type="Script" path="res://scenes/texture_rect.gd" id="2_d4cda"]
+[ext_resource type="Script" uid="uid://buqqkpoi7qnpo" path="res://scripts/item_slot.gd" id="1_pbkix"]
+[ext_resource type="Script" uid="uid://byajxbbitkjen" path="res://scenes/texture_rect.gd" id="2_d4cda"]
 
 [node name="ItemSlot" type="PanelContainer"]
 custom_minimum_size = Vector2(64, 64)

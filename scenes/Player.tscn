@@ -1,7 +1,7 @@
 [gd_scene load_steps=334 format=3 uid="uid://cjyax66vpcugl"]
 
 [ext_resource type="Texture2D" uid="uid://c4og8lal65mpc" path="res://assets/Premium Charakter Spritesheet.png" id="1_id812"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_uwic5"]
+[ext_resource type="Script" uid="uid://esb57htdhkr3" path="res://scripts/player.gd" id="1_uwic5"]
 [ext_resource type="Texture2D" uid="uid://mr1pqbglwdgy" path="res://assets/character_animations/sword-down.png" id="2_mvp0l"]
 [ext_resource type="Texture2D" uid="uid://d2giefpqv5po0" path="res://assets/character_animations/sword-right.png" id="3_3bs36"]
 [ext_resource type="Texture2D" uid="uid://dxjxyos7i8ep5" path="res://assets/character_animations/sword-left.png" id="3_f1rt6"]
@@ -1148,35 +1148,35 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3ftsi"]
 _data = {
-"RESET": SubResource("Animation_ghb7l"),
-"hatchet_down": SubResource("Animation_qbtyl"),
-"hatchet_left": SubResource("Animation_s58tm"),
-"hatchet_right": SubResource("Animation_3mjdv"),
-"hatchet_up": SubResource("Animation_pvltn"),
-"hoe_down": SubResource("Animation_ekmdh"),
-"hoe_left": SubResource("Animation_xlhm1"),
-"hoe_right": SubResource("Animation_qwf3e"),
-"hoe_up": SubResource("Animation_7cjtq"),
-"idle_down": SubResource("Animation_jkdab"),
-"idle_left": SubResource("Animation_spsos"),
-"idle_right": SubResource("Animation_esp1i"),
-"idle_up": SubResource("Animation_y65w3"),
-"run_down": SubResource("Animation_ciptt"),
-"run_left": SubResource("Animation_uw6l7"),
-"run_right": SubResource("Animation_w4tts"),
-"run_up": SubResource("Animation_gfqog"),
-"sword_down": SubResource("Animation_njs1m"),
-"sword_left": SubResource("Animation_m652x"),
-"sword_right": SubResource("Animation_auuno"),
-"sword_up": SubResource("Animation_3dqqw"),
-"walk_down": SubResource("Animation_p4ddd"),
-"walk_left": SubResource("Animation_u26nk"),
-"walk_right": SubResource("Animation_57ux5"),
-"walk_up": SubResource("Animation_crypj"),
-"water_down": SubResource("Animation_gpi2s"),
-"water_left": SubResource("Animation_rprjf"),
-"water_right": SubResource("Animation_5yoyr"),
-"water_up": SubResource("Animation_5gafk")
+&"RESET": SubResource("Animation_ghb7l"),
+&"hatchet_down": SubResource("Animation_qbtyl"),
+&"hatchet_left": SubResource("Animation_s58tm"),
+&"hatchet_right": SubResource("Animation_3mjdv"),
+&"hatchet_up": SubResource("Animation_pvltn"),
+&"hoe_down": SubResource("Animation_ekmdh"),
+&"hoe_left": SubResource("Animation_xlhm1"),
+&"hoe_right": SubResource("Animation_qwf3e"),
+&"hoe_up": SubResource("Animation_7cjtq"),
+&"idle_down": SubResource("Animation_jkdab"),
+&"idle_left": SubResource("Animation_spsos"),
+&"idle_right": SubResource("Animation_esp1i"),
+&"idle_up": SubResource("Animation_y65w3"),
+&"run_down": SubResource("Animation_ciptt"),
+&"run_left": SubResource("Animation_uw6l7"),
+&"run_right": SubResource("Animation_w4tts"),
+&"run_up": SubResource("Animation_gfqog"),
+&"sword_down": SubResource("Animation_njs1m"),
+&"sword_left": SubResource("Animation_m652x"),
+&"sword_right": SubResource("Animation_auuno"),
+&"sword_up": SubResource("Animation_3dqqw"),
+&"walk_down": SubResource("Animation_p4ddd"),
+&"walk_left": SubResource("Animation_u26nk"),
+&"walk_right": SubResource("Animation_57ux5"),
+&"walk_up": SubResource("Animation_crypj"),
+&"water_down": SubResource("Animation_gpi2s"),
+&"water_left": SubResource("Animation_rprjf"),
+&"water_right": SubResource("Animation_5yoyr"),
+&"water_up": SubResource("Animation_5gafk")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23pb5"]
@@ -3203,7 +3203,7 @@ speed = 100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_3ftsi")
+&"": SubResource("AnimationLibrary_3ftsi")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=74 format=3 uid="uid://o5vongcsfxq"]
 
-[ext_resource type="Script" path="res://scripts/mobs/slime_mob.gd" id="1_jo2sw"]
+[ext_resource type="Script" uid="uid://6uv0t4p6onbf" path="res://scripts/mobs/slime_mob.gd" id="1_jo2sw"]
 [ext_resource type="Texture2D" uid="uid://cwmymo6eidtg" path="res://assets/mobs/slime.png" id="1_t0y10"]
-[ext_resource type="Shader" path="res://shaders/slime.gdshader" id="2_6chsw"]
+[ext_resource type="Shader" uid="uid://dukylvs2qqvo0" path="res://shaders/slime.gdshader" id="2_6chsw"]
 [ext_resource type="PackedScene" uid="uid://bf0pfmfs8kvp4" path="res://scenes/hurtbox_component.tscn" id="3_xhlso"]
 [ext_resource type="Texture2D" uid="uid://bocpnfmswudky" path="res://assets/mobs/blue_slime_mobhit_front_2.png" id="4_e8o83"]
 [ext_resource type="PackedScene" uid="uid://chqgdqhhpl82b" path="res://scenes/health_component.tscn" id="4_jf67t"]

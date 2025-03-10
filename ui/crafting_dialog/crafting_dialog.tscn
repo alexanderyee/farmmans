@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1tvlsdxy5ifl"]
 
-[ext_resource type="Script" path="res://ui/crafting_dialog/crafting_dialog.gd" id="1_up0fx"]
+[ext_resource type="Script" uid="uid://eyf8565a48qa" path="res://ui/crafting_dialog/crafting_dialog.gd" id="1_up0fx"]
 [ext_resource type="PackedScene" uid="uid://b4rugsmb0phj4" path="res://ui/item_grid/item_grid.tscn" id="3_x5q0c"]
 
 [node name="CraftingDialog" type="PanelContainer"]

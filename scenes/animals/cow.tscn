@@ -1,11 +1,11 @@
 [gd_scene load_steps=47 format=3 uid="uid://dmeef3smhdmgn"]
 
-[ext_resource type="Script" path="res://scripts/animals/cow/cow.gd" id="1_fby56"]
+[ext_resource type="Script" uid="uid://bvvb80nkgdxhf" path="res://scripts/animals/cow/cow.gd" id="1_fby56"]
 [ext_resource type="Texture2D" uid="uid://dy33fweks53qj" path="res://assets/animals/cow/Light cow animations.png" id="1_gl6qa"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_03b7r"]
-[ext_resource type="Script" path="res://scripts/animals/cow/cow_idle.gd" id="4_icwie"]
-[ext_resource type="Script" path="res://scripts/animals/cow/cow_eat.gd" id="5_na8q1"]
-[ext_resource type="Script" path="res://scripts/animals/cow/cow_sit.gd" id="6_kiwej"]
+[ext_resource type="Script" uid="uid://dfy8kcgde16xl" path="res://scripts/state_machine.gd" id="3_03b7r"]
+[ext_resource type="Script" uid="uid://cr2fg8vq611nh" path="res://scripts/animals/cow/cow_idle.gd" id="4_icwie"]
+[ext_resource type="Script" uid="uid://batjnagar6m4a" path="res://scripts/animals/cow/cow_eat.gd" id="5_na8q1"]
+[ext_resource type="Script" uid="uid://dy13jme2f45cy" path="res://scripts/animals/cow/cow_sit.gd" id="6_kiwej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvr"]
 size = Vector2(32, 19)
@@ -182,16 +182,16 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d2qui"]
 _data = {
-"RESET": SubResource("Animation_jpjxd"),
-"eat": SubResource("Animation_4q8uq"),
-"love": SubResource("Animation_s12b6"),
-"sit": SubResource("Animation_wt5sg"),
-"sit_idle": SubResource("Animation_sln83"),
-"sleep": SubResource("Animation_qgviq"),
-"sniff": SubResource("Animation_p1he0"),
-"stand": SubResource("Animation_ajp4g"),
-"stand_idle": SubResource("Animation_23r57"),
-"walk": SubResource("Animation_7tub8")
+&"RESET": SubResource("Animation_jpjxd"),
+&"eat": SubResource("Animation_4q8uq"),
+&"love": SubResource("Animation_s12b6"),
+&"sit": SubResource("Animation_wt5sg"),
+&"sit_idle": SubResource("Animation_sln83"),
+&"sleep": SubResource("Animation_qgviq"),
+&"sniff": SubResource("Animation_p1he0"),
+&"stand": SubResource("Animation_ajp4g"),
+&"stand_idle": SubResource("Animation_23r57"),
+&"walk": SubResource("Animation_7tub8")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw0wy"]
@@ -334,7 +334,7 @@ region_rect = Rect2(0, 0, 32, 32)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_d2qui")
+&"": SubResource("AnimationLibrary_d2qui")
 }
 
 [node name="GrassDetectionArea" type="Area2D" parent="."]
