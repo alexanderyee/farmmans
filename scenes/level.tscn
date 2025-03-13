@@ -1,5 +1,6 @@
-[gd_scene load_steps=45 format=4 uid="uid://befbhe75nbkbk"]
+[gd_scene load_steps=46 format=4 uid="uid://befbhe75nbkbk"]
 
+[ext_resource type="AudioStream" uid="uid://dd2cljfvs7tn2" path="res://assets/music/Sketchbook 2024-12-26.ogg" id="1_2e2fo"]
 [ext_resource type="PackedScene" uid="uid://cjyax66vpcugl" path="res://scenes/player.tscn" id="1_p5htu"]
 [ext_resource type="Texture2D" uid="uid://y6k4gt0t1x5t" path="res://assets/tilesets/Soil_Ground_Hills_Tiles.png" id="3_5s8cj"]
 [ext_resource type="Script" uid="uid://jh5s4dd544uy" path="res://scenes/ground.gd" id="3_jraoe"]
@@ -1505,6 +1506,13 @@ position = Vector2(102, 89)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-102, -89)
+stream = ExtResource("1_2e2fo")
+volume_db = -12.629
+autoplay = true
+parameters/looping = true
 
 [node name="Background" type="ColorRect" parent="Player"]
 z_index = -10
