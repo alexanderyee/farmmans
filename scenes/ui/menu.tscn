@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://beugbrj50u1gy"]
+
+[ext_resource type="Script" uid="uid://jhfwlyhur4s5" path="res://scripts/ui/menu.gd" id="1_7w7rl"]
+[ext_resource type="VideoStream" path="res://assets/ui/2025-03-12 17-10-35 - Trim.ogv" id="1_e11en"]
+[ext_resource type="FontFile" uid="uid://dmw66mmi2epio" path="res://assets/ui/pixelFont-7-8x14-sproutLands.ttf" id="2_wedc3"]
+[ext_resource type="Texture2D" uid="uid://eh8enciacn76" path="res://assets/ui/big-play-button-normal.png" id="3_w6y0u"]
+[ext_resource type="Texture2D" uid="uid://boxqw7nkt0sc" path="res://assets/ui/big-play-button-pressed.png" id="4_cx0sj"]
+[ext_resource type="Texture2D" uid="uid://c4cxldoka74m4" path="res://assets/ui/big-settings-button-normal.png" id="5_ntye7"]
+[ext_resource type="Texture2D" uid="uid://cyw2r4gis768k" path="res://assets/ui/big-settings-button-pressed.png" id="6_cghgw"]
+[ext_resource type="Texture2D" uid="uid://vqnrs2w7s7w2" path="res://assets/ui/big-quit-button-normal.png" id="7_1pxh0"]
+[ext_resource type="Texture2D" uid="uid://pj32m5t42nh3" path="res://assets/ui/big-quit-button-pressed.png" id="8_e11en"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.15, 1.15)
+stream = ExtResource("1_e11en")
+volume_db = -80.0
+autoplay = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.202863, 0.431442, 0.365699, 1)
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7w7rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_wedc3")
+theme_override_font_sizes/font_size = 80
+text = "Teemo's Domain"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Play" type="TextureButton" parent="Menu/MarginContainer/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("3_w6y0u")
+texture_pressed = ExtResource("4_cx0sj")
+
+[node name="Settings" type="TextureButton" parent="Menu/MarginContainer/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("5_ntye7")
+texture_pressed = ExtResource("6_cghgw")
+
+[node name="Quit" type="TextureButton" parent="Menu/MarginContainer/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("7_1pxh0")
+texture_pressed = ExtResource("8_e11en")
+
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer2/Play" to="Menu" method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer2/Settings" to="Menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer2/Quit" to="Menu" method="_on_quit_pressed"]
