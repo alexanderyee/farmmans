@@ -18,6 +18,7 @@ signal highlight_tile_tool
 @onready var direction: Marker2D = $Direction
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var ground: Ground = %ground
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
 
 var equipped_slot: int
 var face_direction := "down"
@@ -56,7 +57,8 @@ func _physics_process(_delta):
 			perform_tool_action(equipped_item, clicked_cell)
 		if weapon_equipped:
 			perform_weapon_action(equipped_item, face_direction)
-			
+		if tool_equipped || weapon_equipped:
+			sfx_player.play_player_action(equipped_item.action)
 	# check for secondary action (right-click)
 	if Input.is_action_just_pressed("secondary") and !in_action:
 		# get cell mouse is in

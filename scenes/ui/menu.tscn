@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://beugbrj50u1gy"]
 
 [ext_resource type="Script" uid="uid://jhfwlyhur4s5" path="res://scripts/ui/menu.gd" id="1_7w7rl"]
-[ext_resource type="VideoStream" path="res://assets/ui/2025-03-12 17-10-35 - Trim.ogv" id="1_e11en"]
+[ext_resource type="VideoStream" uid="uid://dy0lm5c8pk3yp" path="res://assets/ui/2025-03-12 17-10-35 - Trim.ogv" id="1_e11en"]
 [ext_resource type="FontFile" uid="uid://dmw66mmi2epio" path="res://assets/ui/pixelFont-7-8x14-sproutLands.ttf" id="2_wedc3"]
 [ext_resource type="Texture2D" uid="uid://eh8enciacn76" path="res://assets/ui/big-play-button-normal.png" id="3_w6y0u"]
 [ext_resource type="Texture2D" uid="uid://boxqw7nkt0sc" path="res://assets/ui/big-play-button-pressed.png" id="4_cx0sj"]
